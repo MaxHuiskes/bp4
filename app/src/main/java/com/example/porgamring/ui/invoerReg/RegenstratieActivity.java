@@ -48,7 +48,7 @@ public class RegenstratieActivity extends AppCompatActivity {
 
         String barcode = getIntent().getStringExtra("barcode");
         barcodeText.setText(barcode);
-        String aantal = getIntent().getStringExtra("aantal");
+        String aantal = getIntent().getStringExtra("aan");
 
         button = (Button) findViewById(R.id.schrijf);
         button.setText("Opslaan");//set the text on button
@@ -97,8 +97,6 @@ public class RegenstratieActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             Log.i("strat", "start");
-                            Log.i("timest", timest);
-                            Log.i("aantal", aantal);
                             String body = "{\"barcode\":\"" + barcode
                                     + "\",\"timest\":\"" + timest
                                     + "\",\"aantal\":" + aantal

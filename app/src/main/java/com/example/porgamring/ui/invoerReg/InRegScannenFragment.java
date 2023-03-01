@@ -117,7 +117,7 @@ public class InRegScannenFragment extends Fragment {
                     if (!Objects.equals(barcodeData, "Barcode Text") || !barcodeData.isEmpty()) {
                         Intent i = new Intent(getActivity(), RegenstratieActivity.class);
                         i.putExtra("barcode", barcodeText.getText());
-                        i.putExtra("aantal",aantal.getText());
+                        i.putExtra("aan",String.valueOf(aantal.getText()));
                         try {
                             startActivity(i);
                         } catch (Exception ex) {
@@ -216,10 +216,6 @@ public class InRegScannenFragment extends Fragment {
 
                             barcodeData = barcodes.valueAt(0).displayValue;
                             barcodeText.setText(barcodeData);
-                            for (String p : barcodesList)
-                                if (Objects.equals(p, barcodeData)) {
-                                    //database aantal aanwezig + 1
-                                }
                         }
                     });
                 }

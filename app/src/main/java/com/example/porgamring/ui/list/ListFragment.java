@@ -30,7 +30,7 @@ public class ListFragment<ListArray> extends Fragment {
     private ArrayList<VereisteVoorraad> vereisteVoorraadArraylist;
     private int aantalAan;
     private int aantalVereist;
-    private List<String> boodlijst;
+    private List<String> boodlijst = new ArrayList<String>();
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -41,7 +41,12 @@ public class ListFragment<ListArray> extends Fragment {
         binding = FragmentListBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         bood = binding.bood;
-        boodlijst = new ArrayList<>();
+        ArrayAdapter<String> arr = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_dropdown_item,
+                boodlijst);
+
+        bood.setAdapter(arr);
+
         Thread thrAllBar = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -71,10 +76,16 @@ public class ListFragment<ListArray> extends Fragment {
                     } else {
                         aantalVereist = 0;
                     }
+                    Log.i(barcode+"ver",String.valueOf( aantalVereist));
                 }
             });
 
             vereiste.start();
+            try {
+                vereiste.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             Thread thrver = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -88,32 +99,34 @@ public class ListFragment<ListArray> extends Fragment {
                             aantalAan = aantalAan - o.getAantal();
                         }
                     }
+                    Log.i(barcode+"aan",String.valueOf( aantalAan));
                 }
             });
 
             try {
                 thrver.start();
                 thrver.join();
-                vereiste.join();
-                int wel = aantalVereist - aantalAan;
-                Log.i("\t\t\t\t", String.valueOf(wel));
-                if (wel >= 1) {
-                    String boodschap =  wel+ " keer "+o.toString();
-                    boodlijst.add(boodschap);
-                }
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (Exception e) {
                 Log.i("Exeption", e.getMessage());
             }
-            Log.i("Bood\t\t\t\t", boodlijst.toString());
-            ArrayAdapter<String> arr = new ArrayAdapter<String>(getActivity(),
-                    android.R.layout.simple_spinner_dropdown_item,
-                    boodlijst);
 
-            bood.setAdapter(arr);
+            int wel = aantalVereist - aantalAan;
+            Log.i("\t\t\t\t", String.valueOf(wel));
+            if (wel >= 1) {
+                String boodschap =  wel+ " keer "+o.toString();
+                boodlijst.add(boodschap);
+                Log.i("Bood\t\t\t\t", boodlijst.toString());
+                aantalAan = 0;
+                aantalVereist = 0;
+            }
+
+            Log.i("Bood\t\t\t\t", boodlijst.toString());
 
         }
+
         return root;
     }
 
