@@ -4,65 +4,46 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Button;
+import android.widget.ListView;
+
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.porgamring.APIHandler;
 import com.example.porgamring.databinding.FragmentListBinding;
+import com.example.porgamring.model.ProductBarcode;
+import com.example.porgamring.model.TransactieVoorraad;
+import com.example.porgamring.model.VereisteVoorraad;
+
+import java.util.ArrayList;
 
 public class ListFragment<ListArray> extends Fragment {
 
     private FragmentListBinding binding;
-    private WebView webview;
-    private Button back;
-    private Button forward;
+    private ListView bood;
+    private ArrayList<ProductBarcode> barcodeArryaList;
+    private ArrayList<TransactieVoorraad> transactieVoorraadArryList;
+    private ArrayList<VereisteVoorraad> vereisteVoorraadArraylist;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+                            ViewGroup container, Bundle savedInstanceState) {
         ListViewModel homeViewModel =
                 new ViewModelProvider(this).get(ListViewModel.class);
 
         binding = FragmentListBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        webview = binding.webView;
-        back = binding.back;
-        back.setText("<");
-        forward = binding.forward;
-        forward.setText(">");
 
-        WebSettings webSettings = webview.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-
-        WebViewClient webViewClient = new WebViewClient();
-        webview.setWebViewClient(webViewClient);
-        webview.canGoBackOrForward(10);
-
-
-        webview.loadUrl("https://www.google.com");
-
-        forward.setOnClickListener(new View.OnClickListener() {
+        Thread thrAllBar = new Thread(new Runnable() {
             @Override
-            public void onClick(View view) {
-                if (webview.canGoForward()) {
-                    webview.goForward();
-                }
+            public void run() {
+                APIHandler api = new APIHandler();
+                barcodeArryaList = api.getAlHups("/producten/get");
             }
         });
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (webview.canGoBack()) {
-                    webview.goBack();
-                }
-            }
-        });
 
         return root;
     }
