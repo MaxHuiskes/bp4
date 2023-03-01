@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class WebViewModel extends ViewModel {
+public class ListViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public WebViewModel() {
+    public ListViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is home fragment");
     }

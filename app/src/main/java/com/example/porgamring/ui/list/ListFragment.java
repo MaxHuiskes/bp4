@@ -13,11 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.porgamring.databinding.FragmentWebBinding;
+import com.example.porgamring.databinding.FragmentListBinding;
 
-public class WebFragment<ListArray> extends Fragment {
+public class ListFragment<ListArray> extends Fragment {
 
-    private FragmentWebBinding binding;
+    private FragmentListBinding binding;
     private WebView webview;
     private Button back;
     private Button forward;
@@ -25,10 +25,10 @@ public class WebFragment<ListArray> extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        WebViewModel homeViewModel =
-                new ViewModelProvider(this).get(WebViewModel.class);
+        ListViewModel homeViewModel =
+                new ViewModelProvider(this).get(ListViewModel.class);
 
-        binding = FragmentWebBinding.inflate(inflater, container, false);
+        binding = FragmentListBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         webview = binding.webView;
         back = binding.back;
