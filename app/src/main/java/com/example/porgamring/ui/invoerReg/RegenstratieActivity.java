@@ -108,6 +108,7 @@ public class RegenstratieActivity extends AppCompatActivity {
                     });
                     thrAdd.start();
                     thrAdd.join();
+                    Toast.makeText(getApplicationContext(), "Product(en) zijn succesful toegevoegd", Toast.LENGTH_LONG).show();
 
                 } catch (Exception e) {
                     Log.i("thread vereiste", e.getMessage());

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -112,6 +113,7 @@ public class InRegScannenFragment extends Fragment {
                         thrAdd.start();
                         thrAdd.join();
                     }
+                    Toast.makeText(getActivity().getApplicationContext(), "Product(en) zijn succesful toegevoegd", Toast.LENGTH_LONG).show();
 
                 } catch (Exception e) {
                     if (!Objects.equals(barcodeData, "Barcode Text") || !barcodeData.isEmpty()) {
