@@ -1,11 +1,12 @@
 package com.example.porgamring.ui.list;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -18,6 +19,7 @@ import com.example.porgamring.model.TransactieVoorraad;
 import com.example.porgamring.model.VereisteVoorraad;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListFragment<ListArray> extends Fragment {
 
@@ -26,16 +28,20 @@ public class ListFragment<ListArray> extends Fragment {
     private ArrayList<ProductBarcode> barcodeArryaList;
     private ArrayList<TransactieVoorraad> transactieVoorraadArryList;
     private ArrayList<VereisteVoorraad> vereisteVoorraadArraylist;
+    private int aantalAan;
+    private int aantalVereist;
+    private List<String> boodlijst;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
-                            ViewGroup container, Bundle savedInstanceState) {
+                             ViewGroup container, Bundle savedInstanceState) {
         ListViewModel homeViewModel =
                 new ViewModelProvider(this).get(ListViewModel.class);
 
         binding = FragmentListBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
+        bood = binding.bood;
+        boodlijst = new ArrayList<>();
         Thread thrAllBar = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -44,7 +50,70 @@ public class ListFragment<ListArray> extends Fragment {
             }
         });
 
+        try {
+            thrAllBar.start();
+            thrAllBar.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            Log.i("EXception", e.getMessage());
+        }
 
+        for (ProductBarcode o : barcodeArryaList) {
+            String barcode = o.getStrBarcode();
+            Thread vereiste = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    APIHandler api = new APIHandler();
+                    vereisteVoorraadArraylist = api.getAlVereiste("vereiste/get/" + barcode);
+                    if (!vereisteVoorraadArraylist.isEmpty()) {
+                        aantalVereist = vereisteVoorraadArraylist.get(0).getAantal();
+                    } else {
+                        aantalVereist = 0;
+                    }
+                }
+            });
+
+            vereiste.start();
+            Thread thrver = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    APIHandler api = new APIHandler();
+                    transactieVoorraadArryList = api.getAlTrans("aantal/get/" + barcode);
+
+                    for (TransactieVoorraad o : transactieVoorraadArryList) {
+                        if (o.isBoolPos() == 1) {
+                            aantalAan = aantalAan + o.getAantal();
+                        } else if (o.isBoolPos() == 0) {
+                            aantalAan = aantalAan - o.getAantal();
+                        }
+                    }
+                }
+            });
+
+            try {
+                thrver.start();
+                thrver.join();
+                vereiste.join();
+                int wel = aantalVereist - aantalAan;
+                Log.i("\t\t\t\t", String.valueOf(wel));
+                if (wel >= 1) {
+                    String boodschap =  wel+ " keer "+o.toString();
+                    boodlijst.add(boodschap);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                Log.i("Exeption", e.getMessage());
+            }
+            Log.i("Bood\t\t\t\t", boodlijst.toString());
+            ArrayAdapter<String> arr = new ArrayAdapter<String>(getActivity(),
+                    android.R.layout.simple_spinner_dropdown_item,
+                    boodlijst);
+
+            bood.setAdapter(arr);
+
+        }
         return root;
     }
 
