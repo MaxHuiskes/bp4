@@ -1,4 +1,4 @@
-package com.example.porgamring.ui.web;
+package com.example.porgamring.ui.list;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.porgamring.APIHandler;
 import com.example.porgamring.databinding.FragmentWebBinding;
 
 public class WebFragment<ListArray> extends Fragment {

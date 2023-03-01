@@ -1,4 +1,4 @@
-package com.example.porgamring.ui.slideshow;
+package com.example.porgamring.ui.invoerReg;
 
 import android.Manifest;
 import android.content.Intent;

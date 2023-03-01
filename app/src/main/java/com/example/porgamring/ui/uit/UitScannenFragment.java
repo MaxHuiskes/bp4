@@ -1,4 +1,4 @@
-package com.example.porgamring.ui.gallery;
+package com.example.porgamring.ui.uit;
 
 import android.Manifest;
 import android.content.pm.PackageManager;

@@ -1,4 +1,4 @@
-package com.example.porgamring.ui.slideshow;
+package com.example.porgamring.ui.invoerReg;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

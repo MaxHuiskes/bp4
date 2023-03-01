@@ -1,18 +1,17 @@
-package com.example.porgamring.ui.web;
+package com.example.porgamring.ui.uit;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class WebViewModel extends ViewModel {
+public class UitScannenViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public WebViewModel() {
+    public UitScannenViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is gallery fragment");
     }
-
 
     public LiveData<String> getText() {
         return mText;

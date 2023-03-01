@@ -7,23 +7,23 @@
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.porgamring.ui.slideshow.InRegScannenFragment"
+        android:name="com.example.porgamring.ui.invoerReg.InRegScannenFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_in_reg_scannen" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.porgamring.ui.gallery.UitScannenFragment"
+        android:name="com.example.porgamring.ui.uit.UitScannenFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_uit_scannen" />
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.porgamring.ui.home.HomeFragment"
+        android:name="com.example.porgamring.ui.products.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/nav_web"
-        android:name="com.example.porgamring.ui.web.WebFragment"
+        android:name="com.example.porgamring.ui.list.WebFragment"
         android:label="Web"
         tools:layout="@layout/fragment_web" />
 

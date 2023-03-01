@@ -17,10 +17,10 @@
         android:theme="@style/Theme.Porgamring"
         tools:targetApi="31" >
         <activity
-            android:name=".ui.home.ProductActivity"
+            android:name=".ui.products.ProductActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.slideshow.RegenstratieActivity"
+            android:name=".ui.invoerReg.RegenstratieActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

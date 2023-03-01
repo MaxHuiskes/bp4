@@ -1,14 +1,14 @@
-package com.example.porgamring.ui.home;
+package com.example.porgamring.ui.list;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class WebViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public WebViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is home fragment");
     }

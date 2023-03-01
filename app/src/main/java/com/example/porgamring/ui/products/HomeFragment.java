@@ -1,6 +1,5 @@
-package com.example.porgamring.ui.home;
+package com.example.porgamring.ui.products;
 
-import android.bluetooth.BluetoothManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,7 +18,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.porgamring.APIHandler;
 import com.example.porgamring.databinding.FragmentHomeBinding;
 import com.example.porgamring.model.ProductBarcode;
-import com.example.porgamring.ui.slideshow.RegenstratieActivity;
 
 import java.util.ArrayList;
 

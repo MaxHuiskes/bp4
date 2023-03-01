@@ -1,4 +1,4 @@
-package com.example.porgamring.ui.home;
+package com.example.porgamring.ui.products;
 
 import androidx.appcompat.app.AppCompatActivity;
 

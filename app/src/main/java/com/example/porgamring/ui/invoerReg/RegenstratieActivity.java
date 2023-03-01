@@ -1,4 +1,4 @@
-package com.example.porgamring.ui.slideshow;
+package com.example.porgamring.ui.invoerReg;
 
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
