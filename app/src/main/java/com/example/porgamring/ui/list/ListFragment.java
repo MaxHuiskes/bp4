@@ -81,11 +81,6 @@ public class ListFragment<ListArray> extends Fragment {
             });
 
             vereiste.start();
-            try {
-                vereiste.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             Thread thrver = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -98,6 +93,9 @@ public class ListFragment<ListArray> extends Fragment {
                         } else if (o.isBoolPos() == 0) {
                             aantalAan = aantalAan - o.getAantal();
                         }
+                        else{
+                            aantalAan = aantalAan + 0;
+                        }
                     }
                     Log.i(barcode+"aan",String.valueOf( aantalAan));
                 }
@@ -106,6 +104,7 @@ public class ListFragment<ListArray> extends Fragment {
             try {
                 thrver.start();
                 thrver.join();
+                vereiste.join();
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -113,15 +112,29 @@ public class ListFragment<ListArray> extends Fragment {
                 Log.i("Exeption", e.getMessage());
             }
 
-            int wel = aantalVereist - aantalAan;
-            Log.i("\t\t\t\t", String.valueOf(wel));
-            if (wel >= 1) {
-                String boodschap =  wel+ " keer "+o.toString();
-                boodlijst.add(boodschap);
-                Log.i("Bood\t\t\t\t", boodlijst.toString());
-                aantalAan = 0;
-                aantalVereist = 0;
+            Thread addList = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    int wel = aantalVereist - aantalAan;
+                    Log.i("\t\t\t\t", String.valueOf(wel));
+                    if (wel >= 1) {
+                        String boodschap =  wel+ " keer "+o.toString();
+                        boodlijst.add(boodschap);
+                        Log.i("Bood\t\t\t\t", boodlijst.toString());
+                        aantalAan = 0;
+                        aantalVereist = 0;
+                    }
+                }
+            });
+
+            try{
+                addList.start();
+                addList.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                Log.i("interrupt\t\t\t", e.getMessage());
             }
+
 
             Log.i("Bood\t\t\t\t", boodlijst.toString());
 
