@@ -16,25 +16,25 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.porgamring.APIHandler;
-import com.example.porgamring.databinding.FragmentHomeBinding;
+import com.example.porgamring.databinding.FragmentProductListBinding;
 import com.example.porgamring.model.ProductBarcode;
 
 import java.util.ArrayList;
 
-public class HomeFragment<ListArray> extends Fragment {
+public class ProductListFragment<ListArray> extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private FragmentProductListBinding binding;
     private ListView list;
     private ArrayList<ProductBarcode> dataArrayList;
-    private FragmentHomeBinding FragmentHomeBinding;
+    private FragmentProductListBinding FragmentProductListBinding;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        ProductListViewModel homeViewModel =
+                new ViewModelProvider(this).get(ProductListViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentProductListBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
 
