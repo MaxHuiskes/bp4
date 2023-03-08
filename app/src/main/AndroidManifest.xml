@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.porgamring" >
+    package="com.example.porgamring">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,7 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Porgamring"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+        <activity
+            android:name=".ui.products.UpdateProductActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.products.ProductActivity"
             android:exported="false" />
@@ -26,7 +29,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Porgamring.NoActionBar" >
+            android:theme="@style/Theme.Porgamring.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

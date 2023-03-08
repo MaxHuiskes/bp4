@@ -3,20 +3,27 @@ package com.example.porgamring.ui.products;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.porgamring.APIHandler;
 import com.example.porgamring.R;
+import com.example.porgamring.SentAPI;
 import com.example.porgamring.model.ProductBarcode;
 import com.example.porgamring.model.TransactieVoorraad;
 import com.example.porgamring.model.VereisteVoorraad;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class ProductActivity extends AppCompatActivity {
     private TextView barecode, naam, inhoudEenheid, vereisteAa, current;
@@ -26,6 +33,8 @@ public class ProductActivity extends AppCompatActivity {
     private int currentAantal;
     private ListView listTrans;
     private Button wijzig;
+    private int inhoud;
+    private String eenheid;
 
     @SuppressLint("DefaultLocale")
     @Override
@@ -107,10 +116,10 @@ public class ProductActivity extends AppCompatActivity {
             thread.join();
             vereiste.join();
 
-            int inhoud = dataArrayList.get(0).getIntInhoud();
+            inhoud = dataArrayList.get(0).getIntInhoud();
             String barcode = dataArrayList.get(0).getStrBarcode();
             String name = dataArrayList.get(0).getStrProduct();
-            String eenheid = dataArrayList.get(0).getStrEenheid();
+            eenheid = dataArrayList.get(0).getStrEenheid();
 
             barecode.setText(String.format("Barcode: %s", barcode));
             naam.setText(String.format("Product: %s", name));
@@ -128,7 +137,22 @@ public class ProductActivity extends AppCompatActivity {
         }catch (Exception e){
             vereisteAa.setText("Vereiste aantal: geen vereiste aantal");
         }
-
+        wijzig.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent k = new Intent(ProductActivity.this, UpdateProductActivity.class);
+                k.putExtra("barcode", entry);
+                k.putExtra("ver", vereisteAa.getText());
+                k.putExtra("inhoud", String.valueOf(inhoud));
+                k.putExtra("eenheid", eenheid);
+                k.putExtra("naam", naam.getText());
+                try {
+                    startActivity(k);
+                } catch (Exception ex) {
+                    Log.i("activity", ex.getMessage());
+                }
+            }
+        });
 
 
     }
