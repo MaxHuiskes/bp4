@@ -2,7 +2,6 @@ package com.example.porgamring.ui.products;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,9 +14,6 @@ import android.widget.Toast;
 
 import com.example.porgamring.R;
 import com.example.porgamring.SentAPI;
-
-import java.util.Date;
-import java.util.Locale;
 
 public class UpdateProductActivity extends AppCompatActivity {
     private TextView barcodeText;
