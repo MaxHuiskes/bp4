@@ -138,8 +138,9 @@ public class UitScannenFragment extends Fragment {
                         if (currentAantal >= 1) {
                             thrAdd.start();
                             thrAdd.join();
+                            currentAantal--;
                             //database aantal aanwezig -1
-                            Toast.makeText(getActivity().getApplicationContext(), "Product succesful verwijderd", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity().getApplicationContext(), "Product succesful verwijderd", Toast.LENGTH_SHORT).show();
                         } else {
                             throw new RuntimeException("Er zijn geen producten meer.");
                         }
@@ -148,9 +149,9 @@ public class UitScannenFragment extends Fragment {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (RuntimeException e) {
-                    Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
-                    Toast.makeText(getActivity().getApplicationContext(), "Product niet gevonden", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "Product niet gevonden", Toast.LENGTH_SHORT).show();
 
                 }
             }

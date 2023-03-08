@@ -80,7 +80,7 @@ public class HomeFragment<ListArray> extends Fragment {
                 } catch (Exception ex) {
                     Log.i("activity", ex.getMessage());
                 }
-                Toast.makeText(getActivity(), "open item", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "open item", Toast.LENGTH_SHORT).show();
 
             }
         });

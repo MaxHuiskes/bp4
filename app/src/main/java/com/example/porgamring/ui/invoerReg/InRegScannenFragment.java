@@ -113,7 +113,7 @@ public class InRegScannenFragment extends Fragment {
                         thrAdd.start();
                         thrAdd.join();
                     }
-                    Toast.makeText(getActivity().getApplicationContext(), "Product(en) zijn succesful toegevoegd", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "Product(en) zijn succesful toegevoegd", Toast.LENGTH_SHORT).show();
 
                 } catch (Exception e) {
                     if (!Objects.equals(barcodeData, "Barcode Text") || !barcodeData.isEmpty()) {
