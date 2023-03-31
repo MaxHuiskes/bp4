@@ -76,6 +76,7 @@ public class ProductActivity extends AppCompatActivity {
         });
 
         vereiste.start();
+
         Thread thrver = new Thread(new Runnable() {
             @Override
             public void run() {
