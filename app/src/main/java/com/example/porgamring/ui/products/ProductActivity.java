@@ -34,7 +34,7 @@ public class ProductActivity extends AppCompatActivity {
     private ListView listTrans;
     private Button wijzig;
     private int inhoud;
-    private String eenheid;
+    private String eenheid, name;
 
     @SuppressLint("DefaultLocale")
     @Override
@@ -119,7 +119,7 @@ public class ProductActivity extends AppCompatActivity {
 
             inhoud = dataArrayList.get(0).getIntInhoud();
             String barcode = dataArrayList.get(0).getStrBarcode();
-            String name = dataArrayList.get(0).getStrProduct();
+            name = dataArrayList.get(0).getStrProduct();
             eenheid = dataArrayList.get(0).getStrEenheid();
 
             barecode.setText(String.format("Barcode: %s", barcode));
@@ -146,7 +146,7 @@ public class ProductActivity extends AppCompatActivity {
                 k.putExtra("ver", vereisteAa.getText());
                 k.putExtra("inhoud", String.valueOf(inhoud));
                 k.putExtra("eenheid", eenheid);
-                k.putExtra("naam", naam.getText());
+                k.putExtra("naam", name);
                 try {
                     startActivity(k);
                 } catch (Exception ex) {

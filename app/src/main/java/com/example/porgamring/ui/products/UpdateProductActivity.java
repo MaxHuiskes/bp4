@@ -94,14 +94,15 @@ public class UpdateProductActivity extends AppCompatActivity {
                 Thread thver = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        String aan;
-                        if (vereisteText.getText().toString().isEmpty()){
-                            aan = ver;
-                        } else{
-                            aan = vereisteText.getText().toString();
+                        String aan = vereisteText.getText().toString();
+                        if (ver.equals("Vereiste aantal: geen vereiste aantal")){
+                            SentAPI.post("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/vereiste/insert"
+                                    , "{\"barcode\": \"" + barcode + "\",\"aantal\":" + aan + "}");
+                        } else {
+                            Log.i("vereiste", aan);
+                            SentAPI.put("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/vereiste/update"
+                                    , "{\"barcode\": \"" + barcode + "\",\"aantal\":" + aan + "}");
                         }
-                        SentAPI.put("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/vereiste/update"
-                                , "{\"barcode\": \"" + barcode + "\",\"aantal\":" + aan  + "}");
                     }
                 });
                 String vereistet = vereisteText.getText().toString();
