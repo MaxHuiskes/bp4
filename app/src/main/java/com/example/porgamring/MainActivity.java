@@ -1,5 +1,7 @@
 package com.example.porgamring;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -29,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
+
+        Tasks tasks = new Tasks(getApplicationContext(),(NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE));
+
+        tasks.hourlyTask();
+        tasks.monthlyTask();
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;

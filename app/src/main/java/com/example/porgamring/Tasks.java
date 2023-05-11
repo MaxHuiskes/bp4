@@ -31,7 +31,6 @@ public class Tasks {
      * @param getApplicationContext to get this:
      *                              getApplicationContext()
      * @param notificationManager   to get this:
-     *                              NotificationManager notificationManager
      *                              (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
      */
     public Tasks(Context getApplicationContext, NotificationManager notificationManager) {
