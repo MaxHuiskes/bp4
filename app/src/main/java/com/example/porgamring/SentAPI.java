@@ -43,6 +43,7 @@ public class SentAPI {
             Log.i("IOException", e.toString());
         }
     }
+
     public static void put(String completeUrl, String body) {
         URL url = null;
         try {
@@ -75,7 +76,7 @@ public class SentAPI {
         }
     }
 
-    public static void delete(String urlComplete) throws IOException{
+    public static void delete(String urlComplete) throws IOException {
         try {
             URL url = new URL(urlComplete);
             Log.i("urldone", url.toString());

@@ -14,9 +14,13 @@ public class TransactieVoorraad {
         this.strBarcode = strBarcode;
     }
 
-    public String getDtmDatum() { return dtmDatum; }
+    public String getDtmDatum() {
+        return dtmDatum;
+    }
 
-    public void setDtmDatum(String dtmDatum) { this.dtmDatum = dtmDatum; }
+    public void setDtmDatum(String dtmDatum) {
+        this.dtmDatum = dtmDatum;
+    }
 
     public int getAantal() {
         return intAantal;
@@ -36,7 +40,7 @@ public class TransactieVoorraad {
 
     @Override
     public String toString() {
-        String substring = dtmDatum.substring(0,dtmDatum.indexOf('T'));
+        String substring = dtmDatum.substring(0, dtmDatum.indexOf('T'));
         String re = substring + " " + getAantal() + " ";
         if (boolPos == 1) {
             re = re + "toe gevoegd";

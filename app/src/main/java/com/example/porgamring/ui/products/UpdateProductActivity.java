@@ -1,7 +1,5 @@
 package com.example.porgamring.ui.products;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +9,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.porgamring.R;
 import com.example.porgamring.SentAPI;
@@ -22,6 +22,7 @@ public class UpdateProductActivity extends AppCompatActivity {
     private TextView naamText;
     private Button button;
     private Spinner spEenheid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,26 +61,26 @@ public class UpdateProductActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         String naamTex;
-                        if (naamText.getText().toString().isEmpty()){
+                        if (naamText.getText().toString().isEmpty()) {
                             naamTex = naam;
-                        } else{
+                        } else {
                             naamTex = naamText.getText().toString();
                         }
                         String inhoudT;
-                        if (inhoudText.getText().toString().isEmpty()){
+                        if (inhoudText.getText().toString().isEmpty()) {
                             inhoudT = inhoud;
-                        } else{
+                        } else {
                             inhoudT = inhoudText.getText().toString();
                         }
                         String eenheidT;
-                        if (spEenheid.getSelectedItem().toString().isEmpty()){
+                        if (spEenheid.getSelectedItem().toString().isEmpty()) {
                             eenheidT = naam;
-                        } else{
-                            eenheidT = spEenheid.getSelectedItem().toString() ;
+                        } else {
+                            eenheidT = spEenheid.getSelectedItem().toString();
                         }
                         String body = "{\"barcode\": \"" + barcode + "\",\"product\": \"" + naamTex + "\",\"inhoud\": " + inhoudT + ",\"eenheid\": \"" + eenheidT + "\"}";
-                        Log.i("product\t\t\t", naamTex + "\t"+ inhoudT+"\t"+eenheidT);
-                        Log.i("body",body);
+                        Log.i("product\t\t\t", naamTex + "\t" + inhoudT + "\t" + eenheidT);
+                        Log.i("body", body);
                         SentAPI.put("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/producten/update"
                                 , body);
                     }
@@ -95,7 +96,7 @@ public class UpdateProductActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         String aan = vereisteText.getText().toString();
-                        if (ver.equals("Vereiste aantal: geen vereiste aantal")){
+                        if (ver.equals("Vereiste aantal: geen vereiste aantal")) {
                             SentAPI.post("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/vereiste/insert"
                                     , "{\"barcode\": \"" + barcode + "\",\"aantal\":" + aan + "}");
                         } else {

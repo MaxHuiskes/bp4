@@ -12,12 +12,11 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.porgamring.BluetoothSend;
 import com.example.porgamring.MainActivity;
 import com.example.porgamring.databinding.FragmentAansturingBinding;
-import com.example.porgamring.ui.bluetooth.BluethootFragment;
 
 public class AansturingFragment extends Fragment {
 
-    private FragmentAansturingBinding binding;
     private final BluetoothSend bluetoothSend = MainActivity.bluetoothSend;
+    private FragmentAansturingBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -35,25 +34,21 @@ public class AansturingFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
     }
 
     @Override
     public void onPause() {
         super.onPause();
-
     }
 
     @Override
     public void onStart() {
         super.onStart();
-
     }
 
 

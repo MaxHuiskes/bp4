@@ -21,7 +21,7 @@ public class VereisteVoorraad {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return strBarCode;
     }
 }

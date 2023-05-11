@@ -1,14 +1,7 @@
 package com.example.porgamring.ui.bluetooth;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,16 +10,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.porgamring.BluetoothSend;
 import com.example.porgamring.MainActivity;
-import com.example.porgamring.R;
-import com.example.porgamring.databinding.FragmentAansturingBinding;
 import com.example.porgamring.databinding.FragmentBluethootBinding;
-import com.example.porgamring.ui.aansturing.AansturingViewModel;
 
 import java.io.IOException;
 

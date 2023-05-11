@@ -1,10 +1,7 @@
 package com.example.porgamring.ui.products;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,18 +9,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.porgamring.APIHandler;
 import com.example.porgamring.R;
-import com.example.porgamring.SentAPI;
 import com.example.porgamring.model.ProductBarcode;
 import com.example.porgamring.model.TransactieVoorraad;
 import com.example.porgamring.model.VereisteVoorraad;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 public class ProductActivity extends AppCompatActivity {
     private TextView barecode, naam, inhoudEenheid, vereisteAa, current;

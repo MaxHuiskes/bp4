@@ -6,17 +6,10 @@ import com.example.porgamring.model.ProductBarcode;
 import com.example.porgamring.model.TransactieVoorraad;
 import com.example.porgamring.model.VereisteVoorraad;
 
-//import org.json.simple.JSONArray;
-//import org.json.simple.JSONObject;
-//import org.json.simple.parser.JSONParser;
-//import org.json.simple.parser.ParseException;
-
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class JSONBuilder {

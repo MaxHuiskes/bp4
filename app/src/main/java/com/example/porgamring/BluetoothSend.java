@@ -21,7 +21,7 @@ public class BluetoothSend {
     private BluetoothAdapter bluetoothAdapter;
 
     public BluetoothSend() {
-        bluetoothAdapter= BluetoothAdapter.getDefaultAdapter();
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     }
 
     @SuppressLint("MissingPermission")
@@ -55,7 +55,7 @@ public class BluetoothSend {
         }
     }
 
-    public void closeConnection(){
+    public void closeConnection() {
         try {
             socket.close();
         } catch (IOException e) {
@@ -63,7 +63,7 @@ public class BluetoothSend {
         }
     }
 
-    public String getBluetooth() throws IOException{
+    public String getBluetooth() throws IOException {
         InputStream inputStream = socket.getInputStream();
 
         byte[] buffer = new byte[1024];
@@ -74,7 +74,7 @@ public class BluetoothSend {
         return receivedText;
     }
 
-    public boolean isConnected() throws IOException{
+    public boolean isConnected() throws IOException {
         return socket.isConnected();
     }
 

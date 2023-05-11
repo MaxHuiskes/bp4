@@ -3,26 +3,23 @@ package com.example.porgamring;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Menu;
 
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.porgamring.databinding.ActivityMainBinding;
+import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final BluetoothSend bluetoothSend = new BluetoothSend();
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-    public static final BluetoothSend bluetoothSend = new BluetoothSend();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.appBarMain.toolbar);
 
-        Tasks tasks = new Tasks(getApplicationContext(),(NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE));
+        Tasks tasks = new Tasks(getApplicationContext(), (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE));
 
         tasks.hourlyTask();
         tasks.monthlyTask();

@@ -42,9 +42,9 @@ public class ProductListFragment<ListArray> extends Fragment {
             @Override
             public void run() {
                 APIHandler api = new APIHandler();
-                Log.i("enter","enter getAlHups()");
+                Log.i("enter", "enter getAlHups()");
                 dataArrayList = api.getAlHups("producten/get");
-                Log.i("leaving","leave getAlHups()");
+                Log.i("leaving", "leave getAlHups()");
             }
         });
 
@@ -67,10 +67,10 @@ public class ProductListFragment<ListArray> extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                String entry= list.getAdapter().getItem(i).toString();
+                String entry = list.getAdapter().getItem(i).toString();
                 Log.i("parent", entry);
 
-                String barcode = entry.substring(0,entry.indexOf(' '));
+                String barcode = entry.substring(0, entry.indexOf(' '));
                 Log.i("barcode", barcode);
 
                 Intent k = new Intent(getActivity(), ProductActivity.class);

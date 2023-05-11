@@ -44,7 +44,7 @@ public class ProductBarcode {
     public String toString() {
         String re = strBarcode + ' ' + strProduct + ' ' + intInhoud + ' ' + strEenheid;
 
-        return re ;
+        return re;
     }
 
     public void print() {
