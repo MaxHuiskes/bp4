@@ -74,4 +74,28 @@ public class SentAPI {
             Log.i("IOException", e.toString());
         }
     }
+
+    public static void delete(String urlComplete) throws IOException{
+        try {
+            URL url = new URL(urlComplete);
+            Log.i("urldone", url.toString());
+            HttpURLConnection connection
+                    = (HttpURLConnection) url.openConnection();
+            Log.i("HttpURLConnection", connection.toString());
+            connection.setRequestMethod("GET");
+            connection.connect();
+
+            int responsecode = connection.getResponseCode();
+            Log.i("Resposecode", String.valueOf(responsecode));
+            if (responsecode != 200) {
+                throw new RuntimeException("RersponseCode: " + responsecode);
+            }
+        } catch (ProtocolException e) {
+            Log.e("ProtocolException", e.toString());
+        } catch (MalformedURLException e) {
+            Log.e("MalformedURLException", e.toString());
+        } catch (IOException e) {
+            Log.e("IOException", e.toString());
+        }
+    }
 }

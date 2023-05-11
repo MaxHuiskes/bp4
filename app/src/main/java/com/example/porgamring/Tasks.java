@@ -13,6 +13,7 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -126,7 +127,13 @@ public class Tasks {
                 } else if (date.toString().equals("11")) {
                     mon = "NOV";
                 }
-                String url = "url" + mon;
+                String url = "https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/draai/delete/" + mon;
+
+                try {
+                    SentAPI.delete(url);
+                } catch (IOException e) {
+                    Log.e("IOException", e.getMessage());
+                }
 
             }
         }, initialDelay, 30, TimeUnit.DAYS);
