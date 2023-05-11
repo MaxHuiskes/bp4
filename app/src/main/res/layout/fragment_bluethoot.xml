@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Verbinding verbreken"
+            android:text="Sluit verbinding"
             app:layout_constraintStart_toEndOf="@+id/btnList"
             app:layout_constraintTop_toTopOf="@+id/btnList" />
 

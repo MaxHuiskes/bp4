@@ -6,6 +6,12 @@
     app:startDestination="@+id/nav_slideshow">
 
     <fragment
+        android:id="@+id/nav_blue"
+        android:name="com.example.porgamring.ui.bluetooth.BluethootFragment"
+        android:label="Bluetooth verbinding maken"
+        tools:layout="@layout/fragment_bluethoot" />
+
+    <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.example.porgamring.ui.aansturing.AansturingFragment"
         android:label="@string/menu_slideshow"

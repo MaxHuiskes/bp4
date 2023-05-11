@@ -5,6 +5,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_blue"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Bluetooth connectie maken" />
+        <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_slideshow" />
