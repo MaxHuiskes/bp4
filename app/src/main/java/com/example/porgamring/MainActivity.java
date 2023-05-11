@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    public static final BluetoothSend bluetoothSend = new BluetoothSend();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,4 +64,5 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
 }
