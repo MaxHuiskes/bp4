@@ -80,7 +80,7 @@ public class Tasks {
             public void run() {
                 sendNotification("Je moet draaien!", "Het is weer tijd!");
             }
-        }, 0, 1, TimeUnit.SECONDS); // TimeUnit.HOURS als je de het per uur wilt doen
+        }, 0, 1, TimeUnit.HOURS);
     }
 
     public void monthlyTask() {
