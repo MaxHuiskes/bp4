@@ -7,5 +7,6 @@
     <string name="menu_home">Personene toevoegen</string>
     <string name="menu_gallery">Componenten toevoegen</string>
     <string name="menu_slideshow">Aansturing</string>
+    <string name="personen_lijst">Personen</string>
 
 </resources>

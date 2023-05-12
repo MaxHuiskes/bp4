@@ -38,14 +38,14 @@ public class AansturingFragment extends Fragment {
         btnRechts = binding.btnRechts;
         bedlicher = MainActivity.bedlichter;
 
-        String naam = bedlicher.getStrNaam();
-        String datum = bedlicher.getDtmDatum().toString();
 
         btnRechts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
                     if (bluetoothSend.isConnected()) {
+                        String naam = bedlicher.getStrNaam();
+                        String datum = bedlicher.getDtmDatum().toString();
                         bluetoothSend.send("21");
                         if (!bluetoothSend.getBluetooth().contains("2")) {
                             Toast.makeText(getContext().getApplicationContext(), "Draaien niet gelukt", Toast.LENGTH_SHORT).show();
@@ -53,7 +53,7 @@ public class AansturingFragment extends Fragment {
                     }
                 } catch (IOException e) {
                     Log.e("IOExeptoin", e.getMessage());
-                } catch( NullPointerException e){
+                } catch (NullPointerException e) {
                     Log.e("NullPointerException", e.getMessage());
                 }
             }
@@ -64,6 +64,8 @@ public class AansturingFragment extends Fragment {
             public void onClick(View view) {
                 try {
                     if (bluetoothSend.isConnected()) {
+                        String naam = bedlicher.getStrNaam();
+                        String datum = bedlicher.getDtmDatum().toString();
                         bluetoothSend.send("22");
                         if (!bluetoothSend.getBluetooth().contains("2")) {
                             Toast.makeText(getContext().getApplicationContext(), "Draaien niet gelukt", Toast.LENGTH_SHORT).show();
@@ -71,8 +73,7 @@ public class AansturingFragment extends Fragment {
                     }
                 } catch (IOException e) {
                     Log.e("IOExeptoin", e.getMessage());
-                }
-                catch( NullPointerException e){
+                } catch (NullPointerException e) {
                     Log.e("NullPointerException", e.getMessage());
                 }
             }
