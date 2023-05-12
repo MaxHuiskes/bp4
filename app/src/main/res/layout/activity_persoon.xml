@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.list.PersoonActivity">
+
+    <TextView
+        android:id="@+id/tvDatum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Geboorte datum: "
+        app:layout_constraintStart_toStartOf="@+id/tvNaam"
+        app:layout_constraintTop_toBottomOf="@+id/tvNaam" />
+
+    <TextView
+        android:id="@+id/tvNaam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Naam: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvbloed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bloedgroep: "
+        app:layout_constraintStart_toStartOf="@+id/tvDatum"
+        app:layout_constraintTop_toBottomOf="@+id/tvDatum" />
+
+    <TextView
+        android:id="@+id/tvGewicht"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gewicht"
+        app:layout_constraintStart_toStartOf="@+id/tvbloed"
+        app:layout_constraintTop_toBottomOf="@+id/tvbloed"/>
+
+    <Button
+        android:id="@+id/btnOnder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Onderdelen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        app:layout_constraintStart_toStartOf="@+id/btnOnder"
+        app:layout_constraintTop_toBottomOf="@+id/btnOnder" />
+
+    <ListView
+        android:id="@+id/lvDraai"
+        android:layout_width="352dp"
+        android:layout_height="429dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <TextView
+        android:id="@+id/tvAantal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aantal keer gedraaid:"
+        app:layout_constraintBottom_toTopOf="@+id/lvDraai"
+        app:layout_constraintStart_toStartOf="@+id/lvDraai" />
+</androidx.constraintlayout.widget.ConstraintLayout>

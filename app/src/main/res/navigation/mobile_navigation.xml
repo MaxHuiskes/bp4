@@ -19,18 +19,18 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.porgamring.ui.uit.UitScannenFragment"
+        android:name="com.example.porgamring.ui.componentreg.ComponentRegFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_uit_scannen" />
+        tools:layout="@layout/fragment_component_reg" />
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.porgamring.ui.products.ProductListFragment"
+        android:name="com.example.porgamring.ui.persoonreg.PersoonRegFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_product_list" />
+        tools:layout="@layout/fragment_persoon_reg" />
     <fragment
         android:id="@+id/nav_list"
         android:name="com.example.porgamring.ui.list.ListFragment"
         android:label="Boodschappenlijst"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_personen" />
 
 </navigation>

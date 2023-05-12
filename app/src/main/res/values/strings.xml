@@ -4,8 +4,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <string name="menu_home">Producten</string>
-    <string name="menu_gallery">Uit Scannen</string>
+    <string name="menu_home">Personene toevoegen</string>
+    <string name="menu_gallery">Componenten toevoegen</string>
     <string name="menu_slideshow">Aansturing</string>
 
 </resources>

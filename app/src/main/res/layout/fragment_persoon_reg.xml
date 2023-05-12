@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.persoonreg.PersoonRegFragment">
+
+    <TextView
+        android:id="@+id/tvNaam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
+        android:text="Naam:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvDatum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Geboorte datum: "
+        app:layout_constraintStart_toStartOf="@+id/tvNaam"
+        app:layout_constraintTop_toBottomOf="@+id/tvNaam" />
+
+    <TextView
+        android:id="@+id/tvGewicht"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Gewicht: "
+        app:layout_constraintStart_toStartOf="@+id/tvDatum"
+        app:layout_constraintTop_toBottomOf="@+id/tvDatum" />
+
+    <TextView
+        android:id="@+id/tvBloed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Bloedgroep: "
+        app:layout_constraintStart_toStartOf="@+id/tvGewicht"
+        app:layout_constraintTop_toBottomOf="@+id/tvGewicht" />
+
+    <EditText
+        android:id="@+id/etNaam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintStart_toEndOf="@+id/tvNaam"
+        app:layout_constraintTop_toTopOf="@+id/tvNaam"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/etGewicht"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/tvGewicht"
+        app:layout_constraintTop_toTopOf="@+id/tvGewicht"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <Spinner
+        android:id="@+id/sBloed"
+        android:layout_width="210dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="40dp"
+        app:layout_constraintStart_toEndOf="@+id/tvBloed"
+        app:layout_constraintTop_toTopOf="@+id/tvBloed"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/btnOpslaan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="44dp"
+        android:text="Opslaan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBloed" />
+
+    <Button
+        android:id="@+id/datePickerButton"
+        style="?android:spinnerStyle"
+        android:layout_width="214dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:textColor="@color/white"
+        android:text="JAN 01 2020"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/tvDatum"
+        app:layout_constraintTop_toTopOf="@+id/tvDatum" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

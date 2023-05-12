@@ -1,14 +1,14 @@
-package com.example.porgamring.ui.products;
+package com.example.porgamring.ui.persoonreg;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ProductListViewModel extends ViewModel {
+public class PersoonRegViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public ProductListViewModel() {
+    public PersoonRegViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is home fragment");
     }

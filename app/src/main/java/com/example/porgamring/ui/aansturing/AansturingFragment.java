@@ -47,6 +47,8 @@ public class AansturingFragment extends Fragment {
                     }
                 } catch (IOException e) {
                     Log.e("IOExeptoin", e.getMessage());
+                } catch( NullPointerException e){
+                    Log.e("NullPointerException", e.getMessage());
                 }
             }
         });
@@ -63,6 +65,9 @@ public class AansturingFragment extends Fragment {
                     }
                 } catch (IOException e) {
                     Log.e("IOExeptoin", e.getMessage());
+                }
+                catch( NullPointerException e){
+                    Log.e("NullPointerException", e.getMessage());
                 }
             }
         });
