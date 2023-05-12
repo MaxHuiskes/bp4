@@ -13,11 +13,13 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.porgamring.databinding.ActivityMainBinding;
+import com.example.porgamring.model.Persoon;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final BluetoothSend bluetoothSend = new BluetoothSend();
+    public static Persoon bedlichter;
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 

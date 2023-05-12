@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.porgamring.BluetoothSend;
 import com.example.porgamring.MainActivity;
 import com.example.porgamring.databinding.FragmentAansturingBinding;
+import com.example.porgamring.model.Persoon;
 
 import java.io.IOException;
 
@@ -23,6 +24,7 @@ public class AansturingFragment extends Fragment {
     private final BluetoothSend bluetoothSend = MainActivity.bluetoothSend;
     private FragmentAansturingBinding binding;
     private Button btnLinks, btnRechts;
+    private Persoon bedlicher;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -34,6 +36,10 @@ public class AansturingFragment extends Fragment {
 
         btnLinks = binding.btnLinks;
         btnRechts = binding.btnRechts;
+        bedlicher = MainActivity.bedlichter;
+
+        String naam = bedlicher.getStrNaam();
+        String datum = bedlicher.getDtmDatum().toString();
 
         btnRechts.setOnClickListener(new View.OnClickListener() {
             @Override
