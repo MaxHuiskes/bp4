@@ -17,15 +17,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.porgamring.APIHandler;
 import com.example.porgamring.databinding.FragmentProductListBinding;
-import com.example.porgamring.model.ProductBarcode;
 
 import java.util.ArrayList;
 
 public class ProductListFragment<ListArray> extends Fragment {
 
     private FragmentProductListBinding binding;
-    private ListView list;
-    private ArrayList<ProductBarcode> dataArrayList;
     private FragmentProductListBinding FragmentProductListBinding;
 
 
@@ -36,55 +33,6 @@ public class ProductListFragment<ListArray> extends Fragment {
 
         binding = FragmentProductListBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                APIHandler api = new APIHandler();
-                Log.i("enter", "enter getAlHups()");
-                dataArrayList = api.getAlHups("producten/get");
-                Log.i("leaving", "leave getAlHups()");
-            }
-        });
-
-        thread.start();
-
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            Log.i("", e.toString());
-        }
-
-        list = binding.listView;
-        ArrayAdapter<ProductBarcode> arr = new ArrayAdapter<ProductBarcode>(getActivity(),
-                android.R.layout.simple_spinner_dropdown_item,
-                dataArrayList);
-
-        list.setAdapter(arr);
-
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                String entry = list.getAdapter().getItem(i).toString();
-                Log.i("parent", entry);
-
-                String barcode = entry.substring(0, entry.indexOf(' '));
-                Log.i("barcode", barcode);
-
-                Intent k = new Intent(getActivity(), ProductActivity.class);
-                k.putExtra("entry", barcode);
-                try {
-                    startActivity(k);
-                } catch (Exception ex) {
-                    Log.i("activity", ex.getMessage());
-                }
-                Toast.makeText(getActivity(), "open item", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
 
         return root;
     }

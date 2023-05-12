@@ -2,10 +2,6 @@ package com.example.porgamring;
 
 import android.util.Log;
 
-import com.example.porgamring.model.ProductBarcode;
-import com.example.porgamring.model.TransactieVoorraad;
-import com.example.porgamring.model.VereisteVoorraad;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,7 +10,7 @@ import java.util.ArrayList;
 
 public class JSONBuilder {
 
-    public ArrayList<ProductBarcode> buildHups(String data) {
+   /* public ArrayList<ProductBarcode> buildHups(String data) {
         ArrayList<ProductBarcode> hubs = new ArrayList();
        // JSONParser parser = new JSONParser();
         try {
@@ -103,5 +99,5 @@ public class JSONBuilder {
             Log.i("PraseException", pe.toString());
         }
         return hubs;
-    }
+    }*/
 }

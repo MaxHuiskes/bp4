@@ -3,10 +3,6 @@ package com.example.porgamring;
 import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 
-import com.example.porgamring.model.ProductBarcode;
-import com.example.porgamring.model.TransactieVoorraad;
-import com.example.porgamring.model.VereisteVoorraad;
-
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -57,7 +53,7 @@ public class APIHandler {
         return stringBuilder.toString();
     }
 
-    public ArrayList<ProductBarcode> getAlHups(String api) {
+    /*public ArrayList<ProductBarcode> getAlHups(String api) {
         // gets al data from the json file and put them in object list
         ArrayList<ProductBarcode> hups = new ArrayList<ProductBarcode>();
         String s = getProducten(api);
@@ -80,6 +76,6 @@ public class APIHandler {
         Log.i("JSON file", s);
         hups = jsonBuilder.buildTrans(s);
         return hups;
-    }
+    }*/
 
 }

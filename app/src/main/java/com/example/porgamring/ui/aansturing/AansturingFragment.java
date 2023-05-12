@@ -1,9 +1,12 @@
 package com.example.porgamring.ui.aansturing;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -13,10 +16,13 @@ import com.example.porgamring.BluetoothSend;
 import com.example.porgamring.MainActivity;
 import com.example.porgamring.databinding.FragmentAansturingBinding;
 
+import java.io.IOException;
+
 public class AansturingFragment extends Fragment {
 
     private final BluetoothSend bluetoothSend = MainActivity.bluetoothSend;
     private FragmentAansturingBinding binding;
+    private Button btnLinks, btnRechts;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -25,6 +31,41 @@ public class AansturingFragment extends Fragment {
 
         binding = FragmentAansturingBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        btnLinks = binding.btnLinks;
+        btnRechts = binding.btnRechts;
+
+        btnRechts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    if (bluetoothSend.isConnected()) {
+                        bluetoothSend.send("21");
+                        if (!bluetoothSend.getBluetooth().contains("2")) {
+                            Toast.makeText(getContext().getApplicationContext(), "Draaien niet gelukt", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } catch (IOException e) {
+                    Log.e("IOExeptoin", e.getMessage());
+                }
+            }
+        });
+
+        btnLinks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    if (bluetoothSend.isConnected()) {
+                        bluetoothSend.send("22");
+                        if (!bluetoothSend.getBluetooth().contains("2")) {
+                            Toast.makeText(getContext().getApplicationContext(), "Draaien niet gelukt", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } catch (IOException e) {
+                    Log.e("IOExeptoin", e.getMessage());
+                }
+            }
+        });
 
         return root;
     }
