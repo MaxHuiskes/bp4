@@ -3,6 +3,8 @@ package com.example.porgamring;
 import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 
+import com.example.porgamring.model.Persoon;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -15,7 +17,7 @@ public class APIHandler {
     private JSONBuilder jsonBuilder = new JSONBuilder();
 
     public String getProducten(String data) {
-        String urlapi = apiurl + data;
+        String urlapi = data;
 
         try {
             // url to json file
@@ -53,15 +55,15 @@ public class APIHandler {
         return stringBuilder.toString();
     }
 
-    /*public ArrayList<ProductBarcode> getAlHups(String api) {
+    public ArrayList<Persoon> getAlHups(String api) {
         // gets al data from the json file and put them in object list
-        ArrayList<ProductBarcode> hups = new ArrayList<ProductBarcode>();
+        ArrayList<Persoon> hups = new ArrayList<Persoon>();
         String s = getProducten(api);
         Log.i("JSON file", s);
         hups = jsonBuilder.buildHups(s);
         return hups;
     }
-    public ArrayList<VereisteVoorraad> getAlVereiste(String api) {
+    /*public ArrayList<VereisteVoorraad> getAlVereiste(String api) {
         // gets al data from the json file and put them in object list
         ArrayList<VereisteVoorraad> hups = new ArrayList<VereisteVoorraad>();
         String s = getProducten(api);

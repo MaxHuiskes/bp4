@@ -2,16 +2,21 @@ package com.example.porgamring;
 
 import android.util.Log;
 
+import com.example.porgamring.model.Persoon;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class JSONBuilder {
 
-   /* public ArrayList<ProductBarcode> buildHups(String data) {
-        ArrayList<ProductBarcode> hubs = new ArrayList();
+    public ArrayList<Persoon> buildHups(String data) {
+        ArrayList<Persoon> hubs = new ArrayList();
        // JSONParser parser = new JSONParser();
         try {
             Log.i("try-catch", "1");
@@ -23,17 +28,16 @@ public class JSONBuilder {
 
                 JSONObject userDetail = jaItems.getJSONObject(i);
                 // fetch email and name and store it in arraylist
-                String barcode = (userDetail.getString("strbarcode"));
-                String product = (userDetail.getString("strproduct"));
-                int inhoud = Integer.parseInt (userDetail.getString("intinhoud"));
-                String eenheid = (userDetail.getString("streenheid"));
+                String naam = (userDetail.getString("strnaam"));
+                String dtmDatum = (userDetail.getString("dtmdatum"));
+                int gewicht = Integer.parseInt (userDetail.getString("intgewicht"));
+                String strbloedgroep = (userDetail.getString("strbloedgroep"));
 
-                ProductBarcode h = new ProductBarcode();
-                h.setStrBarcode(barcode);
-                h.setStrProduct(product);
-                h.setIntInhoud(inhoud);
-                h.setStrEenheid(eenheid);
-                h.print();
+                Persoon h = new Persoon();
+                h.setStrNaam(naam);
+                h.setDtmDatum(dtmDatum);
+                h.setStrGewicht(gewicht);
+                h.setStrBloedgroep(strbloedgroep);
                 // adds current object to list of objects
                 hubs.add(h);
             }
@@ -42,7 +46,7 @@ public class JSONBuilder {
         }
         return hubs;
     }
-    public ArrayList<VereisteVoorraad> buildVereisete(String data) {
+    /*public ArrayList<VereisteVoorraad> buildVereisete(String data) {
         ArrayList<VereisteVoorraad> hubs = new ArrayList();
        // JSONParser parser = new JSONParser();
         try {

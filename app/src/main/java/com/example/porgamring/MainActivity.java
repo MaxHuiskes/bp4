@@ -19,7 +19,7 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity {
 
     public static final BluetoothSend bluetoothSend = new BluetoothSend();
-    public static Persoon bedlichter;
+    public static Persoon bedlichter = new Persoon("","",0,"");
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 

@@ -1,27 +1,34 @@
 package com.example.porgamring.model;
 
+import android.util.Log;
+
 import java.time.LocalDate;
 
 public class Persoon {
 
     private String strNaam;
-    private LocalDate dtmDatum;
+    private String dtmDatum;
     private int intGewicht;
     private String strBloedgroep;
 
-    public Persoon( String strNaam, LocalDate dtmDatum, int intGewicht, String strBloedgroep){
-        this.dtmDatum=dtmDatum;
+    public Persoon(String strNaam, String dtmDatum, int intGewicht, String strBloedgroep) {
+        this.dtmDatum = dtmDatum;
         this.strBloedgroep = strBloedgroep;
         this.intGewicht = intGewicht;
         this.strNaam = strNaam;
 
     }
 
-    public LocalDate getDtmDatum() {
+    public Persoon() {
+    }
+
+    public String getDtmDatum() {
         return dtmDatum;
     }
 
-    public void setDtmDatum(LocalDate dtmDatum) {
+    public void setDtmDatum(String dtmDatum) {
+        dtmDatum = dtmDatum.substring(0,dtmDatum.indexOf('T'));
+
         this.dtmDatum = dtmDatum;
     }
 
@@ -30,6 +37,7 @@ public class Persoon {
     }
 
     public void setStrNaam(String strNaam) {
+        Log.e("naam\t\t",strNaam);
         this.strNaam = strNaam;
     }
 

@@ -55,17 +55,17 @@
         app:layout_constraintTop_toTopOf="@+id/tvNaam"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <EditText
-        android:id="@+id/etDatum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Button
+        android:id="@+id/datePickerButton"
+        style="?android:spinnerStyle"
+        android:layout_width="214dp"
+        android:layout_height="48dp"
         android:layout_marginStart="12dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
+        android:textColor="@color/white"
+        android:text="JAN 01 2020"
+        android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/tvDatum"
-        app:layout_constraintTop_toTopOf="@+id/tvDatum"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:layout_constraintTop_toTopOf="@+id/tvDatum" />
 
     <EditText
         android:id="@+id/etGewicht"

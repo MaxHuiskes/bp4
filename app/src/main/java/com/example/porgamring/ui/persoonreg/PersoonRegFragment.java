@@ -13,10 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.porgamring.DatePicker;
-import com.example.porgamring.MainActivity;
 import com.example.porgamring.databinding.FragmentPersoonRegBinding;
 
-import java.util.Calendar;
 
 public class PersoonRegFragment<ListArray> extends Fragment {
 

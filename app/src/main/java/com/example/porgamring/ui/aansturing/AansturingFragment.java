@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,7 @@ public class AansturingFragment extends Fragment {
     private Button btnLinks, btnRechts;
     private Persoon bedlicher;
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         AansturingViewModel slideshowViewModel =
@@ -37,7 +39,6 @@ public class AansturingFragment extends Fragment {
         btnLinks = binding.btnLinks;
         btnRechts = binding.btnRechts;
         bedlicher = MainActivity.bedlichter;
-
 
         btnRechts.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +77,7 @@ public class AansturingFragment extends Fragment {
                 } catch (NullPointerException e) {
                     Log.e("NullPointerException", e.getMessage());
                 }
+
             }
         });
 
