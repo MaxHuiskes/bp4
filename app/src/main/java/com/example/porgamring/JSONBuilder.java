@@ -2,6 +2,7 @@ package com.example.porgamring;
 
 import android.util.Log;
 
+import com.example.porgamring.model.Component;
 import com.example.porgamring.model.Draai;
 import com.example.porgamring.model.Persoon;
 
@@ -79,8 +80,8 @@ public class JSONBuilder {
         }
         return hubs;
     }
-    /*public ArrayList<TransactieVoorraad> buildTrans(String data) {
-        ArrayList<TransactieVoorraad> hubs = new ArrayList();
+    public ArrayList<Component> buildTrans(String data) {
+        ArrayList<Component> hubs = new ArrayList();
        // JSONParser parser = new JSONParser();
         try {
             Log.i("try-catch", "1");
@@ -92,16 +93,16 @@ public class JSONBuilder {
 
                 JSONObject userDetail = jaItems.getJSONObject(i);
                 // fetch email and name and store it in arraylist
-                String barcode = (userDetail.getString("strbarcode"));
-                String dtmDatum =  userDetail.getString("dtmdatum");
-                int aantal = Integer.parseInt (userDetail.getString("intaantal"));
-                int bool = userDetail.getInt("boolpos");
+                String model = (userDetail.getString("strmodelnummer"));
+                String naam =  userDetail.getString("strnaam");
+                String datum = (userDetail.getString("dtmdatum"));
+                String product = userDetail.getString("strproduct");
 
-                TransactieVoorraad h = new TransactieVoorraad();
-                h.setStrBarcode(barcode);
-                h.setBoolPos(bool);
-                h.setDtmDatum(dtmDatum);
-                h.setAantal(aantal);
+                Component h = new Component();
+                h.setPersoon(new Persoon(naam,datum,0,""));
+                h.setStrModelNummer(model);
+                h.setStrProduct(product);
+
                 // adds current object to list of objects
                 hubs.add(h);
             }
@@ -109,5 +110,5 @@ public class JSONBuilder {
             Log.i("PraseException", pe.toString());
         }
         return hubs;
-    }*/
+    }
 }

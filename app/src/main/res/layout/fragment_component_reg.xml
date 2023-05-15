@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Naam persoon: "
+        android:text="Persoon: "
         app:layout_constraintStart_toStartOf="@+id/tvModel"
         app:layout_constraintTop_toBottomOf="@+id/tvModel" />
 
@@ -49,10 +49,9 @@
         android:id="@+id/etDatum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/tvModel"
+        app:layout_constraintStart_toStartOf="@+id/etNaamPro"
         app:layout_constraintTop_toTopOf="@+id/tvModel"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
@@ -60,10 +59,9 @@
         android:id="@+id/spNaamPer"
         android:layout_width="210dp"
         android:layout_height="43dp"
-        android:layout_marginStart="22dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/tvNaamPer"
+        app:layout_constraintStart_toStartOf="@+id/etDatum"
         app:layout_constraintTop_toTopOf="@+id/tvNaamPer"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 

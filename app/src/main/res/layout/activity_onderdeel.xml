@@ -16,8 +16,9 @@
 
     <ListView
         android:id="@+id/lvOnder"
-        android:layout_width="409dp"
-        android:layout_height="681dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_width="354dp"
+        android:layout_height="660dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnVerwijder" />
 </androidx.constraintlayout.widget.ConstraintLayout>

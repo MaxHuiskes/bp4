@@ -3,6 +3,7 @@ package com.example.porgamring;
 import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 
+import com.example.porgamring.model.Component;
 import com.example.porgamring.model.Draai;
 import com.example.porgamring.model.Persoon;
 
@@ -72,13 +73,13 @@ public class APIHandler {
         hups = jsonBuilder.buildVereisete(s);
         return hups;
     }
-    /*public ArrayList<TransactieVoorraad> getAlTrans(String api) {
+    public ArrayList<Component> getAlTrans(String api) {
         // gets al data from the json file and put them in object list
-        ArrayList<TransactieVoorraad> hups = new ArrayList<TransactieVoorraad>();
+        ArrayList<Component> hups = new ArrayList<Component>();
         String s = getProducten(api);
         Log.i("JSON file", s);
         hups = jsonBuilder.buildTrans(s);
         return hups;
-    }*/
+    }
 
 }

@@ -65,29 +65,12 @@ public class PersoonActivity extends AppCompatActivity {
                 alPersoon = api.getAlHups("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get/" + finalNaam + "/" + finalDatum);
             }
         });
-
         try {
             thPersoonGegevens.start();
             thPersoonGegevens.join();
         } catch (InterruptedException e) {
             Log.e("InterruptedException", e.getMessage());
         }
-
-
-        String bloed = "";
-        int gewicht = 0;
-
-
-        if (work) {
-            bloed = alPersoon.get(0).getStrBloedgroep();
-            gewicht = alPersoon.get(0).getIntGewicht();
-            tvGewicht.setText(String.format("%s%s", tvGewicht.getText(), gewicht));
-            tvBloed.setText(String.format("%s%s", tvBloed.getText(), bloed));
-        } else {
-            bloed = "";
-            gewicht = 0;
-        }
-
 
 
         Thread thrdraai = new Thread(new Runnable() {
@@ -99,8 +82,21 @@ public class PersoonActivity extends AppCompatActivity {
         try {
             thrdraai.start();
             thrdraai.join();
-        } catch (InterruptedException e) {
-            Log.e("InterruptedException", e.getMessage());
+        } catch (InterruptedException ex) {
+            Log.e("InterruptedException", ex.getMessage());
+        }
+
+        String bloed = "";
+        int gewicht = 0;
+
+        if (work) {
+            bloed = alPersoon.get(0).getStrBloedgroep();
+            gewicht = alPersoon.get(0).getIntGewicht();
+            tvGewicht.setText(String.format("%s%s", tvGewicht.getText(), gewicht));
+            tvBloed.setText(String.format("%s%s", tvBloed.getText(), bloed));
+        } else {
+            bloed = "";
+            gewicht = 0;
         }
 
         ArrayAdapter<Draai> arr = new ArrayAdapter<Draai>(PersoonActivity.this,
@@ -109,13 +105,13 @@ public class PersoonActivity extends AppCompatActivity {
         arr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         if (work)
-        listView.setAdapter(arr);
+            listView.setAdapter(arr);
 
         try {
             Log.e("listd gewicht", String.valueOf(lDraai.get(0).getPersoon().getIntGewicht()));
 
-        } catch (Exception e) {
-            Log.e("Exception", e.getMessage());
+        } catch (Exception exc) {
+            Log.e("Exception", exc.getMessage());
         }
 
 
@@ -135,6 +131,7 @@ public class PersoonActivity extends AppCompatActivity {
                 Intent k = new Intent(PersoonActivity.this, OnderdeelActivity.class);
                 k.putExtra("naam", finalNaam);
                 k.putExtra("datum", finalDatum);
+                k.putExtra("work", true);
                 startActivity(k);
             }
         });

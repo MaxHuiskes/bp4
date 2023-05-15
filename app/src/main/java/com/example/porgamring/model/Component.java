@@ -4,10 +4,15 @@ public class Component {
     private Persoon persoon;
     private String strModelNummer;
     private String strProduct;
-    public Component(Persoon persoon, String strModelNummer,String strProduct){
+
+    public Component(Persoon persoon, String strModelNummer, String strProduct) {
         this.strModelNummer = strModelNummer;
         this.strProduct = strProduct;
         this.persoon = persoon;
+    }
+
+    public Component() {
+
     }
 
     public Persoon getPersoon() {
