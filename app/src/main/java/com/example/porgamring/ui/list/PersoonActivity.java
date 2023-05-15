@@ -1,5 +1,6 @@
 package com.example.porgamring.ui.list;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +26,7 @@ public class PersoonActivity extends AppCompatActivity {
     private ArrayList<Draai> lDraai;
     private ArrayList<Persoon> alPersoon;
     private TextView tvNaam, tvDatum, tvBloed, tvGewicht;
+    private String datum = "",naam = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +45,7 @@ public class PersoonActivity extends AppCompatActivity {
 
         boolean work = getIntent().getBooleanExtra("work", false);
 
-        String datum = "";
-        String naam = "";
+
 
         if (work) {
             datum = getIntent().getStringExtra("datum");
@@ -121,6 +122,13 @@ public class PersoonActivity extends AppCompatActivity {
                 Intent k = new Intent(PersoonActivity.this, UpdatePersoon.class);
                 k.putExtra("naam", finalNaam);
                 k.putExtra("datum", finalDatum);
+                if (work){
+                k.putExtra("gewicht", alPersoon.get(0).getIntGewicht());
+                k.putExtra("bloed", alPersoon.get(0).getStrBloedgroep());}
+                else{
+                    k.putExtra("gewicht", 1);
+                    k.putExtra("bloed", "");
+                }
                 startActivity(k);
             }
         });
@@ -135,5 +143,29 @@ public class PersoonActivity extends AppCompatActivity {
                 startActivity(k);
             }
         });
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void onResume() {
+        super.onResume();
+        Thread thPersoonGegevens = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                APIHandler api = new APIHandler();
+                alPersoon = api.getAlHups("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get/" + naam + "/" + datum);
+            }
+        });
+        try {
+            thPersoonGegevens.start();
+            thPersoonGegevens.join();
+//            tvBloed.setText("Bloedgoep: "+  alPersoon.get(0).getStrBloedgroep());
+//            tvGewicht.setText("Gewicht: "+alPersoon.get(0).getIntGewicht());
+//            tvNaam.setText("Naam: "+ alPersoon.get(0).getStrNaam());
+//            tvDatum.setText("Geboorte datum: " + alPersoon.get(0).getDtmDatum());
+
+        } catch (InterruptedException e) {
+            Log.e("InterruptedException", e.getMessage());
+        }
     }
 }

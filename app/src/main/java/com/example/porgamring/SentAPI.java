@@ -83,7 +83,7 @@ public class SentAPI {
             HttpURLConnection connection
                     = (HttpURLConnection) url.openConnection();
             Log.i("HttpURLConnection", connection.toString());
-            connection.setRequestMethod("GET");
+            connection.setRequestMethod("DELETE");
             connection.connect();
 
             int responsecode = connection.getResponseCode();

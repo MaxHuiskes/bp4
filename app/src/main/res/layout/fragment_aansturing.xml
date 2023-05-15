@@ -13,8 +13,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Naar links"
-        android:backgroundTint="#EC2525"
-
+        android:backgroundTint="#2717ff"
+        android:textColor="#fff"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,18 +24,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Naar rechts"
-        android:backgroundTint="#6Dff17"
+        android:backgroundTint="#EC2525"
+        android:textColor="#fff"
         app:layout_constraintStart_toEndOf="@+id/btnLinks"
         app:layout_constraintTop_toTopOf="@+id/btnLinks" />
 
-    <!--    <Button-->
-<!--        android:id="@+id/button"-->
-<!--        android:layout_width="406dp"-->
-<!--        android:layout_height="572dp"-->
-<!--        android:backgroundTint="#efff17"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
-
+    <!-- rood = #EC2525 groen = #6Dff17 geel = #efff17 blauw = #2717ff -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

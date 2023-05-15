@@ -10,6 +10,11 @@ public class Persoon {
     private String strBloedgroep;
 
     public Persoon(String strNaam, String dtmDatum, int intGewicht, String strBloedgroep) {
+        try {
+            dtmDatum = dtmDatum.substring(0, dtmDatum.indexOf('T'));
+        } catch (Exception e) {
+            Log.e("Exception",e.getMessage());
+        }
         this.dtmDatum = dtmDatum;
         this.strBloedgroep = strBloedgroep;
         this.intGewicht = intGewicht;
