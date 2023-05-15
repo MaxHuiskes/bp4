@@ -2,8 +2,6 @@ package com.example.porgamring.model;
 
 import android.util.Log;
 
-import java.time.LocalDate;
-
 public class Persoon {
 
     private String strNaam;
@@ -27,7 +25,7 @@ public class Persoon {
     }
 
     public void setDtmDatum(String dtmDatum) {
-        dtmDatum = dtmDatum.substring(0,dtmDatum.indexOf('T'));
+        dtmDatum = dtmDatum.substring(0, dtmDatum.indexOf('T'));
 
         this.dtmDatum = dtmDatum;
     }
@@ -37,15 +35,15 @@ public class Persoon {
     }
 
     public void setStrNaam(String strNaam) {
-        Log.e("naam\t\t",strNaam);
+        Log.e("naam\t\t", strNaam);
         this.strNaam = strNaam;
     }
 
-    public int getStrGewicht() {
+    public int getIntGewicht() {
         return intGewicht;
     }
 
-    public void setStrGewicht(int Gewicht) {
+    public void setIntGewicht(int intGewicht) {
         this.intGewicht = intGewicht;
     }
 

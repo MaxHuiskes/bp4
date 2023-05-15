@@ -2,6 +2,7 @@ package com.example.porgamring;
 
 import android.util.Log;
 
+import com.example.porgamring.model.Draai;
 import com.example.porgamring.model.Persoon;
 
 import org.json.JSONArray;
@@ -14,7 +15,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class JSONBuilder {
-
     public ArrayList<Persoon> buildHups(String data) {
         ArrayList<Persoon> hubs = new ArrayList();
        // JSONParser parser = new JSONParser();
@@ -31,23 +31,26 @@ public class JSONBuilder {
                 String naam = (userDetail.getString("strnaam"));
                 String dtmDatum = (userDetail.getString("dtmdatum"));
                 int gewicht = Integer.parseInt (userDetail.getString("intgewicht"));
+                Log.e("json gewicht", String.valueOf( gewicht));
                 String strbloedgroep = (userDetail.getString("strbloedgroep"));
+                Log.e("bloed",strbloedgroep);
 
                 Persoon h = new Persoon();
                 h.setStrNaam(naam);
                 h.setDtmDatum(dtmDatum);
-                h.setStrGewicht(gewicht);
+                h.setIntGewicht(gewicht);
+                Log.e("gwicht opgelsgen", String.valueOf( h.getIntGewicht()));
                 h.setStrBloedgroep(strbloedgroep);
                 // adds current object to list of objects
                 hubs.add(h);
             }
         } catch (JSONException pe) {
-            Log.i("PraseException", pe.toString());
+            Log.e("PraseException", pe.getMessage());
         }
         return hubs;
     }
-    /*public ArrayList<VereisteVoorraad> buildVereisete(String data) {
-        ArrayList<VereisteVoorraad> hubs = new ArrayList();
+    public ArrayList<Draai> buildVereisete(String data) {
+        ArrayList<Draai> hubs = new ArrayList();
        // JSONParser parser = new JSONParser();
         try {
             Log.i("try-catch", "1");
@@ -59,12 +62,15 @@ public class JSONBuilder {
 
                 JSONObject userDetail = jaItems.getJSONObject(i);
                 // fetch email and name and store it in arraylist
-                String barcode = (userDetail.getString("strbarcode"));
-                int aantal = Integer.parseInt (userDetail.getString("intaantal"));
+                String moment = (userDetail.getString("dtmmoment"));
+                String kant = (userDetail.getString("strkant"));
+                String naam = (userDetail.getString("strnaam"));
+                String datum = (userDetail.getString("dtmdatum"));
 
-                VereisteVoorraad h = new VereisteVoorraad();
-                h.setStrBarCode(barcode);
-                h.setAantal(aantal);
+                Draai h = new Draai();
+                h.setStrKant(kant);
+                h.setDtmMoment(moment);
+                h.setPersoon(new Persoon(naam,datum,0,""));
                 // adds current object to list of objects
                 hubs.add(h);
             }
@@ -73,7 +79,7 @@ public class JSONBuilder {
         }
         return hubs;
     }
-    public ArrayList<TransactieVoorraad> buildTrans(String data) {
+    /*public ArrayList<TransactieVoorraad> buildTrans(String data) {
         ArrayList<TransactieVoorraad> hubs = new ArrayList();
        // JSONParser parser = new JSONParser();
         try {

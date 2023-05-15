@@ -77,9 +77,7 @@ public class BluethootFragment extends Fragment {
             Log.e("InterruptedException", e.getMessage());
         }
 
-        for (Persoon o : persoonArrayList) {
-            arrPersoon.add(o);
-        }
+        arrPersoon.addAll(persoonArrayList);
 
         spPer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

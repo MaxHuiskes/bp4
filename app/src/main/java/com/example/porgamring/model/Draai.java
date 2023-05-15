@@ -1,14 +1,17 @@
 package com.example.porgamring.model;
 
 public class Draai {
-    Persoon persoon;
-    String dtmMoment;
-    String strKant;
+    private Persoon persoon;
+    private String dtmMoment;
+    private String strKant;
 
     public Draai(Persoon persoon, String dtmMoment, String strKant) {
         this.dtmMoment = dtmMoment;
         this.strKant = strKant;
         this.persoon = persoon;
+    }
+
+    public Draai() {
     }
 
     public Persoon getPersoon() {
@@ -24,7 +27,9 @@ public class Draai {
     }
 
     public void setDtmMoment(String dtmMoment) {
-        this.dtmMoment = dtmMoment;
+        String time = dtmMoment.substring(dtmMoment.indexOf('T') + 1, dtmMoment.length() - 1);
+        String datum = dtmMoment.substring(0, dtmMoment.indexOf('T'));
+        this.dtmMoment = datum + " " + time;
     }
 
     public String getStrKant() {
@@ -32,6 +37,11 @@ public class Draai {
     }
 
     public void setStrKant(String strKant) {
+        if (strKant.equals("r")) {
+            strKant = "Naar Rechts op";
+        } else if (strKant.equals("l")) {
+            strKant = "Naar links op";
+        }
         this.strKant = strKant;
     }
 

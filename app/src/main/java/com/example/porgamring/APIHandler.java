@@ -3,6 +3,7 @@ package com.example.porgamring;
 import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 
+import com.example.porgamring.model.Draai;
 import com.example.porgamring.model.Persoon;
 
 import java.io.IOException;
@@ -17,12 +18,12 @@ public class APIHandler {
     private JSONBuilder jsonBuilder = new JSONBuilder();
 
     public String getProducten(String data) {
-        String urlapi = data;
-
+        //StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.setLength(0);
         try {
             // url to json file
             URL url
-                    = new URL(urlapi);
+                    = new URL(data);
             Log.i("urldone", url.toString());
             HttpURLConnection connection
                     = (HttpURLConnection) url.openConnection();
@@ -63,15 +64,15 @@ public class APIHandler {
         hups = jsonBuilder.buildHups(s);
         return hups;
     }
-    /*public ArrayList<VereisteVoorraad> getAlVereiste(String api) {
+    public ArrayList<Draai> getAlVereiste(String apid) {
         // gets al data from the json file and put them in object list
-        ArrayList<VereisteVoorraad> hups = new ArrayList<VereisteVoorraad>();
-        String s = getProducten(api);
+        ArrayList<Draai> hups = new ArrayList<Draai>();
+        String s = getProducten(apid);
         Log.i("JSON file", s);
         hups = jsonBuilder.buildVereisete(s);
         return hups;
     }
-    public ArrayList<TransactieVoorraad> getAlTrans(String api) {
+    /*public ArrayList<TransactieVoorraad> getAlTrans(String api) {
         // gets al data from the json file and put them in object list
         ArrayList<TransactieVoorraad> hups = new ArrayList<TransactieVoorraad>();
         String s = getProducten(api);

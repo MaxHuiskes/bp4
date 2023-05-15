@@ -10,6 +10,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
@@ -127,6 +128,12 @@ public class Tasks {
                     mon = "NOV";
                 }
                 String url = "https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/draai/delete/" + mon;
+                try {
+                   // SentAPI.delete(url);
+                    Toast.makeText(getApplicationContext, "delete last month", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Log.e("IOException", e.getMessage());
+                }
 
                 try {
                     SentAPI.delete(url);
