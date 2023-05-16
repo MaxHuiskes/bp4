@@ -46,7 +46,7 @@
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/etDatum"
+        android:id="@+id/etModel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -61,7 +61,7 @@
         android:layout_height="43dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/etDatum"
+        app:layout_constraintStart_toStartOf="@+id/etModel"
         app:layout_constraintTop_toTopOf="@+id/tvNaamPer"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 

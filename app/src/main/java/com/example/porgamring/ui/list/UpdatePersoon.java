@@ -86,46 +86,46 @@ public class UpdatePersoon extends AppCompatActivity {
         String finalNaamOud = naamOud;
         int finalGewichtOud = gewichtOud;
         String finalDatumOud = datumOud;
-        Thread thrUpdate = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                if (sBloed.getSelectedItem().toString().equals("niet veranderen")){
-                    bloedgroep = finalBloedgroepOud;
-                } else {
-                    bloedgroep = sBloed.getSelectedItem().toString();
-                }
-                if (etNaam.getText().toString().isEmpty()){
-                    naam = finalNaamOud;
-                } else{
-                    naam = etNaam.getText().toString();
-                }
-                if (etGewicht.getText().toString().isEmpty()){
-                    gewicht = finalGewichtOud;
-                } else {
-                    gewicht = Integer.getInteger(etGewicht.getText().toString());
-                }
-                if ( datePicker.datePickerDialog.toString().equals(datePicker.getTodaysDate())){
-                    datum = finalDatumOud;
-                } else {
-                    datum = dateButton.getText().toString();
-                }
-                String body = "{" +
-                        "\"naam\":\""+naam+"\"," +
-                        "\"datum\":\""+datum+"\"," +
-                        "\"gewicht\":"+gewicht+"," +
-                        "\"bloed\":\""+bloedgroep+ "\"," +
-                        "\"onaam\":\""+ finalNaamOud+ "\"," +
-                        "\"odate\":\""+finalDatumOud+"\"" +
-                        "}";
-                Log.e("body",body);
-                SentAPI.put("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/put",body);
-            }
-        });
+
 
         btnOpslaan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Thread thrUpdate = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (sBloed.getSelectedItem().toString().equals("niet veranderen")){
+                            bloedgroep = finalBloedgroepOud;
+                        } else {
+                            bloedgroep = sBloed.getSelectedItem().toString();
+                        }
+                        if (etNaam.getText().toString().isEmpty()){
+                            naam = finalNaamOud;
+                        } else{
+                            naam = etNaam.getText().toString();
+                        }
+                        if (etGewicht.getText().toString().isEmpty()){
+                            gewicht = finalGewichtOud;
+                        } else {
+                            gewicht = Integer.getInteger(etGewicht.getText().toString());
+                        }
+                        if ( dateButton.getText().toString().equals(datePicker.getTodaysDate())){
+                            datum = finalDatumOud;
+                        } else {
+                            datum = dateButton.getText().toString();
+                        }
+                        String body = "{" +
+                                "\"naam\":\""+naam+"\"," +
+                                "\"datum\":\""+datum+"\"," +
+                                "\"gewicht\":"+gewicht+"," +
+                                "\"bloed\":\""+bloedgroep+ "\"," +
+                                "\"onaam\":\""+ finalNaamOud+ "\"," +
+                                "\"odate\":\""+finalDatumOud+"\"" +
+                                "}";
+                        Log.e("body",body);
+                        SentAPI.put("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/put",body);
+                    }
+                });
                 try{
                     thrUpdate.start();
                     thrUpdate.join();

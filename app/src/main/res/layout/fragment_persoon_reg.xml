@@ -51,7 +51,6 @@
         android:layout_marginStart="80dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintStart_toEndOf="@+id/tvNaam"
         app:layout_constraintTop_toTopOf="@+id/tvNaam"
         tools:ignore="TouchTargetSizeCheck" />

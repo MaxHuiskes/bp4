@@ -12,8 +12,9 @@ import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
 public class SentAPI {
-    public static void post(String completeUrl, String body) {
+    public static String post(String completeUrl, String body) {
         URL url = null;
+        int responsecode = 0;
         try {
             url = new URL(completeUrl);
             URLConnection con = url.openConnection();
@@ -33,7 +34,7 @@ public class SentAPI {
             } catch (Exception e) {
                 Log.i("Exception", e.toString());
             }
-            int responsecode = http.getResponseCode();
+            responsecode = http.getResponseCode();
             Log.i("Resposecode", String.valueOf(responsecode));
         } catch (MalformedURLException e) {
             Log.i("MalformedURLException", e.toString());
@@ -42,10 +43,12 @@ public class SentAPI {
         } catch (IOException e) {
             Log.i("IOException", e.toString());
         }
+        return String.valueOf(responsecode);
     }
 
-    public static void put(String completeUrl, String body) {
+    public static String put(String completeUrl, String body) {
         URL url = null;
+        int responsecode = 0;
         try {
             url = new URL(completeUrl);
             URLConnection con = url.openConnection();
@@ -65,7 +68,7 @@ public class SentAPI {
             } catch (Exception e) {
                 Log.i("Exception", e.toString());
             }
-            int responsecode = http.getResponseCode();
+            responsecode = http.getResponseCode();
             Log.i("Resposecode", String.valueOf(responsecode));
         } catch (MalformedURLException e) {
             Log.i("MalformedURLException", e.toString());
@@ -74,11 +77,14 @@ public class SentAPI {
         } catch (IOException e) {
             Log.i("IOException", e.toString());
         }
+        return String.valueOf(responsecode);
     }
 
-    public static void delete(String urlComplete) throws IOException {
+    public static String delete(String urlComplete) throws IOException {
+        URL url = null;
+        int responsecode = 0;
         try {
-            URL url = new URL(urlComplete);
+            url = new URL(urlComplete);
             Log.i("urldone", url.toString());
             HttpURLConnection connection
                     = (HttpURLConnection) url.openConnection();
@@ -86,7 +92,7 @@ public class SentAPI {
             connection.setRequestMethod("DELETE");
             connection.connect();
 
-            int responsecode = connection.getResponseCode();
+            responsecode = connection.getResponseCode();
             Log.i("Resposecode", String.valueOf(responsecode));
             if (responsecode != 200) {
                 throw new RuntimeException("RersponseCode: " + responsecode);
@@ -98,5 +104,6 @@ public class SentAPI {
         } catch (IOException e) {
             Log.e("IOException", e.toString());
         }
+        return String.valueOf(responsecode);
     }
 }

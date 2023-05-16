@@ -38,8 +38,8 @@ public class OnderdeelActivity extends AppCompatActivity {
         String naam = "";
         String datum = "";
 
-//        naam = getIntent().getStringExtra("naam");
-//        datum = getIntent().getStringExtra("datum");
+        naam = getIntent().getStringExtra("naam");
+        datum = getIntent().getStringExtra("datum");
 
         String finalDatum = datum;
         String finalNaam = naam;
@@ -74,22 +74,7 @@ public class OnderdeelActivity extends AppCompatActivity {
             }
         });
 
-        Thread thrDel = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Log.e("delete","start");
-                    SentAPI.delete("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/component/delete/"
-                            + component.getStrProduct() + "/"
-                            + component.getPersoon().getStrNaam() + "/"
-                            + component.getPersoon().getDtmDatum() + "/"
-                            + component.getStrModelNummer());
-                    Log.e("delete","END");
-                } catch (Exception e) {
-                    Log.e("IOException",e.getMessage());
-                }
-            }
-        });
+
 
         btnVerwijder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +83,22 @@ public class OnderdeelActivity extends AppCompatActivity {
                 Log.e("component", component.getPersoon().toString());
                 Log.e("component", component.getStrProduct());
 
+                Thread thrDel = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Log.e("delete","start");
+                            SentAPI.delete("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/component/delete/"
+                                    + component.getStrProduct() + "/"
+                                    + component.getPersoon().getStrNaam() + "/"
+                                    + component.getPersoon().getDtmDatum() + "/"
+                                    + component.getStrModelNummer());
+                            Log.e("delete","END");
+                        } catch (Exception e) {
+                            Log.e("IOException",e.getMessage());
+                        }
+                    }
+                });
                try{
                    thrDel.start();
                    thrDel.join();
