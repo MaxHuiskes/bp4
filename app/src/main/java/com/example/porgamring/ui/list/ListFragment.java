@@ -21,6 +21,7 @@ import com.example.porgamring.databinding.FragmentPersonenBinding;
 import com.example.porgamring.model.Persoon;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ListFragment<ListArray> extends Fragment {
 
@@ -55,6 +56,8 @@ public class ListFragment<ListArray> extends Fragment {
         } catch (InterruptedException e) {
             Log.e("InterruptedException", e.getMessage());
         }
+
+
 
         ArrayAdapter<Persoon> arr = new ArrayAdapter<Persoon>(getActivity(),
                 android.R.layout.simple_spinner_dropdown_item,

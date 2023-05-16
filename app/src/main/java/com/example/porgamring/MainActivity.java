@@ -34,8 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
         Tasks tasks = new Tasks(getApplicationContext(), (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE));
 
-        tasks.hourlyTask();
         tasks.monthlyTask();
+        tasks.hourlyTask();
+
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;

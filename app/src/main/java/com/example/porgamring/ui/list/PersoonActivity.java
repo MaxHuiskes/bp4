@@ -18,6 +18,7 @@ import com.example.porgamring.model.Draai;
 import com.example.porgamring.model.Persoon;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class PersoonActivity extends AppCompatActivity {
 
@@ -27,6 +28,7 @@ public class PersoonActivity extends AppCompatActivity {
     private ArrayList<Persoon> alPersoon;
     private TextView tvNaam, tvDatum, tvBloed, tvGewicht;
     private String datum = "", naam = "";
+    private boolean work = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,7 @@ public class PersoonActivity extends AppCompatActivity {
 
         APIHandler api = new APIHandler();
 
-        boolean work = getIntent().getBooleanExtra("work", false);
+        work = getIntent().getBooleanExtra("work", false);
 
 
         if (work) {
@@ -85,6 +87,8 @@ public class PersoonActivity extends AppCompatActivity {
         } catch (InterruptedException ex) {
             Log.e("InterruptedException", ex.getMessage());
         }
+
+        lDraai.sort((t1, t2) -> t2.getDtmMoment().compareTo(t1.getDtmMoment()));
 
         String bloed = "";
         int gewicht = 0;
@@ -158,10 +162,12 @@ public class PersoonActivity extends AppCompatActivity {
         try {
             thPersoonGegevens.start();
             thPersoonGegevens.join();
-//            tvBloed.setText("Bloedgoep: "+  alPersoon.get(0).getStrBloedgroep());
-//            tvGewicht.setText("Gewicht: "+alPersoon.get(0).getIntGewicht());
-//            tvNaam.setText("Naam: "+ alPersoon.get(0).getStrNaam());
-//            tvDatum.setText("Geboorte datum: " + alPersoon.get(0).getDtmDatum());
+            if(work) {
+                tvBloed.setText("Bloedgoep: " + alPersoon.get(0).getStrBloedgroep());
+                tvGewicht.setText("Gewicht: " + alPersoon.get(0).getIntGewicht());
+                tvNaam.setText("Naam: " + alPersoon.get(0).getStrNaam());
+                tvDatum.setText("Geboorte datum: " + alPersoon.get(0).getDtmDatum());
+            }
 
         } catch (InterruptedException e) {
             Log.e("InterruptedException", e.getMessage());

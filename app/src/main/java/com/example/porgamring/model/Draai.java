@@ -37,16 +37,16 @@ public class Draai {
     }
 
     public void setStrKant(String strKant) {
-        if (strKant.equals("r")) {
-            strKant = "Naar Rechts op";
-        } else if (strKant.equals("l")) {
-            strKant = "Naar links op";
+        if (strKant.equals("r") || strKant.equals("R")) {
+            strKant = "Rechts";
+        } else if (strKant.equals("l") || strKant.equals("L")) {
+            strKant = "Links";
         }
         this.strKant = strKant;
     }
 
     @Override
     public String toString() {
-        return strKant + ' ' + dtmMoment;
+        return "Naar " +strKant + " op " + dtmMoment;
     }
 }

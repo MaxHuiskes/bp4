@@ -59,19 +59,25 @@ public class AansturingFragment extends Fragment {
                                 "\"datum\":\"" + bedlicher.getDtmDatum() + "\"," +
                                 "\"kant\":\"R\"" +
                                 "}";
-                        SentAPI.post("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/draai/post", body);
+                        Log.e("body", body);
+                        String response = SentAPI.post("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/draai/post", body);
+                        Log.e("response", response);
                     }
                 });
                 try {
                     if (bluetoothSend.isConnected()) {
                         String naam = bedlicher.getStrNaam();
                         String datum = bedlicher.getDtmDatum().toString();
-                        bluetoothSend.send("21");
-                        if (!bluetoothSend.getBluetooth().contains("2")) {
+                        bluetoothSend.send("1");
+                        boolean gelukt = bluetoothSend.getBluetooth().contains("2");
+                        if (!gelukt) {
                             Toast.makeText(getContext().getApplicationContext(), "Draaien niet gelukt", Toast.LENGTH_SHORT).show();
+
+                        } else if(gelukt){
                             thrRechts.start();
                             thrRechts.join();
                         }
+
                     }
                 } catch (IOException e) {
                     Log.e("IOExeptoin", e.getMessage());
@@ -106,9 +112,11 @@ public class AansturingFragment extends Fragment {
                     if (bluetoothSend.isConnected()) {
                         String naam = bedlicher.getStrNaam();
                         String datum = bedlicher.getDtmDatum().toString();
-                        bluetoothSend.send("22");
-                        if (!bluetoothSend.getBluetooth().contains("2")) {
+                        bluetoothSend.send("2");
+                        boolean gelukt = bluetoothSend.getBluetooth().contains("2");
+                        if (!gelukt) {
                             Toast.makeText(getContext().getApplicationContext(), "Draaien niet gelukt", Toast.LENGTH_SHORT).show();
+                        } else if(gelukt){
                             thrLinks.start();
                             thrLinks.join();
                         }

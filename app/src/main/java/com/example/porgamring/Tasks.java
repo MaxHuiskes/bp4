@@ -100,39 +100,40 @@ public class Tasks {
             public void run() {
                 @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("MM");
                 Date date = new Date();
-                Log.d("Month", dateFormat.format(date));
+                Log.e("Month", dateFormat.format(date));
                 String mon = "";
-                if (date.toString().equals("12")) {
+                String dat = dateFormat.format(date);
+                if (dat.equals("12")) {
                     mon = "DEC";
-                } else if (date.toString().equals("01")) {
+                } else if (dat.equals("01")) {
                     mon = "JAN";
-                } else if (date.toString().equals("02")) {
+                } else if (dat.equals("02")) {
                     mon = "FEB";
-                } else if (date.toString().equals("03")) {
+                } else if (dat.equals("03")) {
                     mon = "MAR";
-                } else if (date.toString().equals("04")) {
+                } else if (dat.equals("04")) {
                     mon = "APR";
-                } else if (date.toString().equals("05")) {
+                } else if (dat.equals("05")) {
                     mon = "MAY";
-                } else if (date.toString().equals("06")) {
+                } else if (dat.equals("06")) {
                     mon = "JUN";
-                } else if (date.toString().equals("07")) {
+                } else if (dat.equals("07")) {
                     mon = "JUL";
-                } else if (date.toString().equals("08")) {
+                } else if (dat.equals("08")) {
                     mon = "AUG";
-                } else if (date.toString().equals("09")) {
+                } else if (dat.equals("09")) {
                     mon = "SEP";
-                } else if (date.toString().equals("10")) {
+                } else if (dat.equals("10")) {
                     mon = "OCT";
-                } else if (date.toString().equals("11")) {
+                } else if (dat.equals("11")) {
                     mon = "NOV";
                 }
                 String url = "https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/draai/delete/" + mon;
                 try {
-                    // SentAPI.delete(url);
+                    SentAPI.delete(url);
                     Toast.makeText(getApplicationContext, "delete last month", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
-                    Log.e("IOException", e.getMessage());
+                    Log.e("Exception", e.getMessage());
                 }
 
                 try {
@@ -142,6 +143,7 @@ public class Tasks {
                 }
 
             }
-        }, initialDelay, 30, TimeUnit.DAYS);
+        }, 0, 30, TimeUnit.DAYS);
+
     }
 }
