@@ -15,7 +15,6 @@ import com.example.porgamring.R;
 import com.example.porgamring.SentAPI;
 import com.example.porgamring.model.Component;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class OnderdeelActivity extends AppCompatActivity {
@@ -75,7 +74,6 @@ public class OnderdeelActivity extends AppCompatActivity {
         });
 
 
-
         btnVerwijder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,26 +85,26 @@ public class OnderdeelActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
-                            Log.e("delete","start");
+                            Log.e("delete", "start");
                             SentAPI.delete("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/component/delete/"
                                     + component.getStrProduct() + "/"
                                     + component.getPersoon().getStrNaam() + "/"
                                     + component.getPersoon().getDtmDatum() + "/"
                                     + component.getStrModelNummer());
-                            Log.e("delete","END");
+                            Log.e("delete", "END");
                         } catch (Exception e) {
-                            Log.e("IOException",e.getMessage());
+                            Log.e("IOException", e.getMessage());
                         }
                     }
                 });
-               try{
-                   thrDel.start();
-                   thrDel.join();
-                   alComp.remove(component);
-                   arr.notifyDataSetChanged();
-               } catch (InterruptedException e) {
-                   Log.e("InterruptedException",e.getMessage());
-               }
+                try {
+                    thrDel.start();
+                    thrDel.join();
+                    alComp.remove(component);
+                    arr.notifyDataSetChanged();
+                } catch (InterruptedException e) {
+                    Log.e("InterruptedException", e.getMessage());
+                }
             }
         });
     }

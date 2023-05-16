@@ -26,7 +26,7 @@ public class PersoonActivity extends AppCompatActivity {
     private ArrayList<Draai> lDraai;
     private ArrayList<Persoon> alPersoon;
     private TextView tvNaam, tvDatum, tvBloed, tvGewicht;
-    private String datum = "",naam = "";
+    private String datum = "", naam = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,6 @@ public class PersoonActivity extends AppCompatActivity {
         APIHandler api = new APIHandler();
 
         boolean work = getIntent().getBooleanExtra("work", false);
-
 
 
         if (work) {
@@ -122,10 +121,10 @@ public class PersoonActivity extends AppCompatActivity {
                 Intent k = new Intent(PersoonActivity.this, UpdatePersoon.class);
                 k.putExtra("naam", finalNaam);
                 k.putExtra("datum", finalDatum);
-                if (work){
-                k.putExtra("gewicht", alPersoon.get(0).getIntGewicht());
-                k.putExtra("bloed", alPersoon.get(0).getStrBloedgroep());}
-                else{
+                if (work) {
+                    k.putExtra("gewicht", alPersoon.get(0).getIntGewicht());
+                    k.putExtra("bloed", alPersoon.get(0).getStrBloedgroep());
+                } else {
                     k.putExtra("gewicht", 1);
                     k.putExtra("bloed", "");
                 }

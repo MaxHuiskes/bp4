@@ -7,14 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.porgamring.APIHandler;
 import com.example.porgamring.BluetoothSend;
 import com.example.porgamring.MainActivity;
 import com.example.porgamring.SentAPI;
@@ -45,7 +43,7 @@ public class AansturingFragment extends Fragment {
         btnRechts = binding.btnRechts;
         bedlicher = MainActivity.bedlichter;
 
-                btnRechts.setOnClickListener(new View.OnClickListener() {
+        btnRechts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Thread thrRechts = new Thread(new Runnable() {
@@ -53,15 +51,15 @@ public class AansturingFragment extends Fragment {
                     public void run() {
                         String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
                         String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
-                        String timest = currentDate + " "+ currentTime;
+                        String timest = currentDate + " " + currentTime;
 
                         String body = "{" +
-                                "\"timest\":\""+ timest+ "\"," +
-                                "\"naam\":\""+ bedlicher.getStrNaam() + "\"," +
-                                "\"datum\":\""+ bedlicher.getDtmDatum()+ "\"," +
+                                "\"timest\":\"" + timest + "\"," +
+                                "\"naam\":\"" + bedlicher.getStrNaam() + "\"," +
+                                "\"datum\":\"" + bedlicher.getDtmDatum() + "\"," +
                                 "\"kant\":\"R\"" +
                                 "}";
-                        SentAPI.post("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/draai/post",body) ;
+                        SentAPI.post("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/draai/post", body);
                     }
                 });
                 try {
@@ -80,7 +78,7 @@ public class AansturingFragment extends Fragment {
                 } catch (NullPointerException e) {
                     Log.e("NullPointerException", e.getMessage());
                 } catch (InterruptedException e) {
-                    Log.e("InterruptedException",e.getMessage());
+                    Log.e("InterruptedException", e.getMessage());
                 }
             }
         });
@@ -94,15 +92,15 @@ public class AansturingFragment extends Fragment {
                         public void run() {
                             String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
                             String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
-                            String timest = currentDate + " "+ currentTime;
+                            String timest = currentDate + " " + currentTime;
 
                             String body = "{" +
-                                    "\"timest\":\""+ timest+ "\"," +
-                                    "\"naam\":\""+ bedlicher.getStrNaam() + "\"," +
-                                    "\"datum\":\""+ bedlicher.getDtmDatum()+ "\"," +
+                                    "\"timest\":\"" + timest + "\"," +
+                                    "\"naam\":\"" + bedlicher.getStrNaam() + "\"," +
+                                    "\"datum\":\"" + bedlicher.getDtmDatum() + "\"," +
                                     "\"kant\":\"L\"" +
                                     "}";
-                            SentAPI.post("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/draai/post",body) ;
+                            SentAPI.post("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/draai/post", body);
                         }
                     });
                     if (bluetoothSend.isConnected()) {
@@ -120,7 +118,7 @@ public class AansturingFragment extends Fragment {
                 } catch (NullPointerException e) {
                     Log.e("NullPointerException", e.getMessage());
                 } catch (InterruptedException e) {
-                    Log.e("InterruptedException",e.getMessage());
+                    Log.e("InterruptedException", e.getMessage());
                 }
 
             }

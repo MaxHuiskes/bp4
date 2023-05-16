@@ -16,11 +16,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.porgamring.DatePicker;
-import com.example.porgamring.SentAPI;
 import com.example.porgamring.databinding.FragmentPersoonRegBinding;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
@@ -41,7 +38,7 @@ public class PersoonRegFragment<ListArray> extends Fragment {
         binding = FragmentPersoonRegBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         dateButton = binding.datePickerButton;
-        DatePicker datePicker = new DatePicker(dateButton,getActivity());
+        DatePicker datePicker = new DatePicker(dateButton, getActivity());
         datePicker.initDatePicker(false);
 
         dateButton.setText(datePicker.getTodaysDate());
@@ -75,50 +72,49 @@ public class PersoonRegFragment<ListArray> extends Fragment {
         sBloed.setAdapter(arr);
 
 
-
         btnOpslaan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String gewicht, bloed, naam;
                 String datum;
-                if(etGewicht.getText().toString().isEmpty()){
-                    Toast.makeText(getContext(),"Niet alle gegevens zijn in gevuld",Toast.LENGTH_SHORT).show();
-                } else{
+                if (etGewicht.getText().toString().isEmpty()) {
+                    Toast.makeText(getContext(), "Niet alle gegevens zijn in gevuld", Toast.LENGTH_SHORT).show();
+                } else {
                     gewicht = etGewicht.getText().toString();
-                    if(etNaam.getText().toString().isEmpty()){
-                        Toast.makeText(getContext(),"Niet alle gegevens zijn in gevuld",Toast.LENGTH_SHORT).show();
-                    } else{
+                    if (etNaam.getText().toString().isEmpty()) {
+                        Toast.makeText(getContext(), "Niet alle gegevens zijn in gevuld", Toast.LENGTH_SHORT).show();
+                    } else {
                         naam = etNaam.getText().toString();
-                        if(sBloed.getSelectedItem().toString().isEmpty()){
-                            Toast.makeText(getContext(),"Niet alle gegevens zijn in gevuld",Toast.LENGTH_SHORT).show();
+                        if (sBloed.getSelectedItem().toString().isEmpty()) {
+                            Toast.makeText(getContext(), "Niet alle gegevens zijn in gevuld", Toast.LENGTH_SHORT).show();
                         } else {
                             bloed = sBloed.getSelectedItem().toString();
-                            if (dateButton.getText().toString().equals(datePicker.getTodaysDate())){
-                                Toast.makeText(getContext(),"Niet alle gegevens zijn in gevuld",Toast.LENGTH_SHORT).show();
-                            }else {
+                            if (dateButton.getText().toString().equals(datePicker.getTodaysDate())) {
+                                Toast.makeText(getContext(), "Niet alle gegevens zijn in gevuld", Toast.LENGTH_SHORT).show();
+                            } else {
                                 datum = dateButton.getText().toString();
                                 body = "{" +
-                                        "\"naam\":\""+naam +"\"," +
-                                        "\"datum\":\""+ datum + "\"," +
-                                        "\"gewicht\":"+ gewicht +"," +
-                                        "\"bloed\":\""+ bloed + "\"" +
+                                        "\"naam\":\"" + naam + "\"," +
+                                        "\"datum\":\"" + datum + "\"," +
+                                        "\"gewicht\":" + gewicht + "," +
+                                        "\"bloed\":\"" + bloed + "\"" +
                                         "}";
-                                Log.e("body",body);
+                                Log.e("body", body);
 
                                 Thread thrCreate = new Thread(new Runnable() {
                                     @Override
                                     public void run() {
 
-                                       // String response = SentAPI.post("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/post",body);
+                                        // String response = SentAPI.post("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/post",body);
 
                                     }
                                 });
-                                try{
+                                try {
                                     thrCreate.start();
                                     thrCreate.join();
-                                    Toast.makeText(getContext(),"Persoon is geregistreerd",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "Persoon is geregistreerd", Toast.LENGTH_SHORT).show();
                                 } catch (InterruptedException e) {
-                                    Log.e("InterruptedException",e.getMessage());
+                                    Log.e("InterruptedException", e.getMessage());
 
                                 }
                             }
@@ -127,8 +123,6 @@ public class PersoonRegFragment<ListArray> extends Fragment {
                 }
             }
         });
-
-
 
 
         return root;

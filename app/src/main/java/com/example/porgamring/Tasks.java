@@ -129,7 +129,7 @@ public class Tasks {
                 }
                 String url = "https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/draai/delete/" + mon;
                 try {
-                   // SentAPI.delete(url);
+                    // SentAPI.delete(url);
                     Toast.makeText(getApplicationContext, "delete last month", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     Log.e("IOException", e.getMessage());

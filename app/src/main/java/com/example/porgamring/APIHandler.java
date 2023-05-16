@@ -65,6 +65,7 @@ public class APIHandler {
         hups = jsonBuilder.buildHups(s);
         return hups;
     }
+
     public ArrayList<Draai> getAlVereiste(String apid) {
         // gets al data from the json file and put them in object list
         ArrayList<Draai> hups = new ArrayList<Draai>();
@@ -73,6 +74,7 @@ public class APIHandler {
         hups = jsonBuilder.buildVereisete(s);
         return hups;
     }
+
     public ArrayList<Component> getAlTrans(String api) {
         // gets al data from the json file and put them in object list
         ArrayList<Component> hups = new ArrayList<Component>();

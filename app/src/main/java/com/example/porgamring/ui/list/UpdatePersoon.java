@@ -13,18 +13,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.porgamring.DatePicker;
 import com.example.porgamring.R;
 import com.example.porgamring.SentAPI;
-import com.example.porgamring.model.Persoon;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class UpdatePersoon extends AppCompatActivity {
 
     private Button dateButton, btnOpslaan;
     private EditText etGewicht, etNaam;
     private Spinner sBloed;
-    private String naamOud = "",datumOud = "",bloedgroepOud = "",naam = "",datum = "",bloedgroep = "";
-    private int gewichtOud = 0,gewicht = 0;
+    private String naamOud = "", datumOud = "", bloedgroepOud = "", naam = "", datum = "", bloedgroep = "";
+    private int gewichtOud = 0, gewicht = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,43 +92,43 @@ public class UpdatePersoon extends AppCompatActivity {
                 Thread thrUpdate = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        if (sBloed.getSelectedItem().toString().equals("niet veranderen")){
+                        if (sBloed.getSelectedItem().toString().equals("niet veranderen")) {
                             bloedgroep = finalBloedgroepOud;
                         } else {
                             bloedgroep = sBloed.getSelectedItem().toString();
                         }
-                        if (etNaam.getText().toString().isEmpty()){
+                        if (etNaam.getText().toString().isEmpty()) {
                             naam = finalNaamOud;
-                        } else{
+                        } else {
                             naam = etNaam.getText().toString();
                         }
-                        if (etGewicht.getText().toString().isEmpty()){
+                        if (etGewicht.getText().toString().isEmpty()) {
                             gewicht = finalGewichtOud;
                         } else {
                             gewicht = Integer.getInteger(etGewicht.getText().toString());
                         }
-                        if ( dateButton.getText().toString().equals(datePicker.getTodaysDate())){
+                        if (dateButton.getText().toString().equals(datePicker.getTodaysDate())) {
                             datum = finalDatumOud;
                         } else {
                             datum = dateButton.getText().toString();
                         }
                         String body = "{" +
-                                "\"naam\":\""+naam+"\"," +
-                                "\"datum\":\""+datum+"\"," +
-                                "\"gewicht\":"+gewicht+"," +
-                                "\"bloed\":\""+bloedgroep+ "\"," +
-                                "\"onaam\":\""+ finalNaamOud+ "\"," +
-                                "\"odate\":\""+finalDatumOud+"\"" +
+                                "\"naam\":\"" + naam + "\"," +
+                                "\"datum\":\"" + datum + "\"," +
+                                "\"gewicht\":" + gewicht + "," +
+                                "\"bloed\":\"" + bloedgroep + "\"," +
+                                "\"onaam\":\"" + finalNaamOud + "\"," +
+                                "\"odate\":\"" + finalDatumOud + "\"" +
                                 "}";
-                        Log.e("body",body);
-                        SentAPI.put("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/put",body);
+                        Log.e("body", body);
+                        SentAPI.put("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/put", body);
                     }
                 });
-                try{
+                try {
                     thrUpdate.start();
                     thrUpdate.join();
                 } catch (InterruptedException e) {
-                    Log.e("InterruptedException",e.getMessage());
+                    Log.e("InterruptedException", e.getMessage());
                 }
                 finish();
             }
