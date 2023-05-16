@@ -69,9 +69,9 @@ public class AansturingFragment extends Fragment {
                         String naam = bedlicher.getStrNaam();
                         String datum = bedlicher.getDtmDatum().toString();
                         bluetoothSend.send("1");
-
-                        boolean gelukt = bluetoothSend.getBluetooth().equals("2\n");
-
+                        boolean gelukt = false;
+                        gelukt = bluetoothSend.getBluetooth().contains("2");
+                        Log.e("gelukt", String.valueOf(gelukt));
                         if (!gelukt) {
                             Toast.makeText(getContext().getApplicationContext(), "Draaien niet gelukt", Toast.LENGTH_SHORT).show();
                         } else {
@@ -114,7 +114,7 @@ public class AansturingFragment extends Fragment {
                         String naam = bedlicher.getStrNaam();
                         String datum = bedlicher.getDtmDatum().toString();
                         bluetoothSend.send("2");
-                        boolean gelukt = bluetoothSend.getBluetooth().equals("2\n");
+                        boolean gelukt = bluetoothSend.getBluetooth().contains("2");
                         if (!gelukt) {
                             Toast.makeText(getContext().getApplicationContext(), "Draaien niet gelukt", Toast.LENGTH_SHORT).show();
                         } else {
