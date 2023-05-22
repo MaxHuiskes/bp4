@@ -16,12 +16,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.porgamring.APIHandler;
+import com.example.porgamring.helpers.APIHandler;
 import com.example.porgamring.databinding.FragmentPersonenBinding;
 import com.example.porgamring.model.Persoon;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class ListFragment<ListArray> extends Fragment {
 

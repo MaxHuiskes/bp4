@@ -18,8 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.porgamring.APIHandler;
-import com.example.porgamring.BluetoothSend;
+import com.example.porgamring.helpers.APIHandler;
+import com.example.porgamring.helpers.BluetoothSend;
 import com.example.porgamring.MainActivity;
 import com.example.porgamring.databinding.FragmentBluethootBinding;
 import com.example.porgamring.model.Persoon;

@@ -1,4 +1,4 @@
-package com.example.porgamring;
+package com.example.porgamring.helpers;
 
 import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
@@ -13,6 +13,10 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
+
+import com.example.porgamring.MainActivity;
+import com.example.porgamring.R;
+import com.example.porgamring.helpers.SentAPI;
 
 import java.io.IOException;
 import java.text.DateFormat;

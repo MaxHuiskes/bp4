@@ -15,8 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.porgamring.APIHandler;
-import com.example.porgamring.SentAPI;
+import com.example.porgamring.helpers.APIHandler;
+import com.example.porgamring.helpers.SentAPI;
 import com.example.porgamring.databinding.FragmentComponentRegBinding;
 import com.example.porgamring.model.Persoon;
 

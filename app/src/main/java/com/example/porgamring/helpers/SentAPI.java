@@ -1,4 +1,4 @@
-package com.example.porgamring;
+package com.example.porgamring.helpers;
 
 import android.util.Log;
 
