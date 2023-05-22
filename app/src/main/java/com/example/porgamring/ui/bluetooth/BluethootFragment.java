@@ -50,11 +50,13 @@ public class BluethootFragment extends Fragment {
         APIHandler api = new APIHandler();
 
 
+
         btnDis = binding.btnDis;
         btnlijst = binding.btnList;
         list = binding.lvList;
         tvStatus = binding.tvStatus;
         pairedDevicesArrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1);
+        tvStatus.setText("Geen verbinding.");
 
         ArrayList<Persoon> arrPersoon = new ArrayList<Persoon>();
         ArrayAdapter<Persoon> arr = new ArrayAdapter<Persoon>(getActivity(),

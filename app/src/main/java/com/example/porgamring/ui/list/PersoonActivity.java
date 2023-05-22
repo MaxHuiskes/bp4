@@ -18,7 +18,6 @@ import com.example.porgamring.model.Draai;
 import com.example.porgamring.model.Persoon;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class PersoonActivity extends AppCompatActivity {
 
@@ -28,7 +27,7 @@ public class PersoonActivity extends AppCompatActivity {
     private ArrayList<Persoon> alPersoon;
     private TextView tvNaam, tvDatum, tvBloed, tvGewicht;
     private String datum = "", naam = "";
-    private boolean work = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,19 +44,10 @@ public class PersoonActivity extends AppCompatActivity {
 
         APIHandler api = new APIHandler();
 
-        work = getIntent().getBooleanExtra("work", false);
-
-
-        if (work) {
-            datum = getIntent().getStringExtra("datum");
-            naam = getIntent().getStringExtra("naam");
-            tvDatum.setText(String.format("%s%s", tvDatum.getText(), datum));
-            tvNaam.setText(String.format("%s%s", tvNaam.getText(), naam));
-        } else {
-            datum = "";
-            naam = "";
-        }
-
+        datum = getIntent().getStringExtra("datum");
+        naam = getIntent().getStringExtra("naam");
+        tvDatum.setText(String.format("%s%s", tvDatum.getText(), datum));
+        tvNaam.setText(String.format("%s%s", tvNaam.getText(), naam));
 
         String finalNaam = naam;
         String finalDatum = datum;
@@ -93,23 +83,19 @@ public class PersoonActivity extends AppCompatActivity {
         String bloed = "";
         int gewicht = 0;
 
-        if (work) {
-            bloed = alPersoon.get(0).getStrBloedgroep();
-            gewicht = alPersoon.get(0).getIntGewicht();
-            tvGewicht.setText(String.format("%s%s", tvGewicht.getText(), gewicht));
-            tvBloed.setText(String.format("%s%s", tvBloed.getText(), bloed));
-        } else {
-            bloed = "";
-            gewicht = 0;
-        }
+        bloed = alPersoon.get(0).getStrBloedgroep();
+        gewicht = alPersoon.get(0).getIntGewicht();
+        tvGewicht.setText(String.format("%s%s", tvGewicht.getText(), gewicht));
+        tvBloed.setText(String.format("%s%s", tvBloed.getText(), bloed));
+
 
         ArrayAdapter<Draai> arr = new ArrayAdapter<Draai>(PersoonActivity.this,
                 android.R.layout.simple_spinner_dropdown_item,
                 lDraai);
         arr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        if (work)
-            listView.setAdapter(arr);
+
+        listView.setAdapter(arr);
 
         try {
             Log.e("listd gewicht", String.valueOf(lDraai.get(0).getPersoon().getIntGewicht()));
@@ -125,13 +111,10 @@ public class PersoonActivity extends AppCompatActivity {
                 Intent k = new Intent(PersoonActivity.this, UpdatePersoon.class);
                 k.putExtra("naam", finalNaam);
                 k.putExtra("datum", finalDatum);
-                if (work) {
-                    k.putExtra("gewicht", alPersoon.get(0).getIntGewicht());
-                    k.putExtra("bloed", alPersoon.get(0).getStrBloedgroep());
-                } else {
-                    k.putExtra("gewicht", 1);
-                    k.putExtra("bloed", "");
-                }
+
+                k.putExtra("gewicht", alPersoon.get(0).getIntGewicht());
+                k.putExtra("bloed", alPersoon.get(0).getStrBloedgroep());
+
                 startActivity(k);
             }
         });
@@ -162,12 +145,11 @@ public class PersoonActivity extends AppCompatActivity {
         try {
             thPersoonGegevens.start();
             thPersoonGegevens.join();
-            if(work) {
-                tvBloed.setText("Bloedgoep: " + alPersoon.get(0).getStrBloedgroep());
-                tvGewicht.setText("Gewicht: " + alPersoon.get(0).getIntGewicht());
-                tvNaam.setText("Naam: " + alPersoon.get(0).getStrNaam());
-                tvDatum.setText("Geboorte datum: " + alPersoon.get(0).getDtmDatum());
-            }
+
+            tvBloed.setText("Bloedgoep: " + alPersoon.get(0).getStrBloedgroep());
+            tvGewicht.setText("Gewicht: " + alPersoon.get(0).getIntGewicht());
+            tvNaam.setText("Naam: " + alPersoon.get(0).getStrNaam());
+            tvDatum.setText("Geboorte datum: " + alPersoon.get(0).getDtmDatum());
 
         } catch (InterruptedException e) {
             Log.e("InterruptedException", e.getMessage());

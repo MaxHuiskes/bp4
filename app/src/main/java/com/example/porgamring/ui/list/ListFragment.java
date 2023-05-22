@@ -65,21 +65,7 @@ public class ListFragment<ListArray> extends Fragment {
 
         arr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        //listView.setAdapter(arr);
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent k = new Intent(getActivity(), PersoonActivity.class);
-                k.putExtra("work",false);
-                try {
-                    startActivity(k);
-                } catch (Exception ex) {
-                    Log.i("activity", ex.getMessage());
-                }
-                Toast.makeText(getActivity(), "open item", Toast.LENGTH_SHORT).show();
-            }
-        });
+        listView.setAdapter(arr);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

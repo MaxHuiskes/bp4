@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Naar links"
         android:backgroundTint="#2717ff"
+        android:text="Naar links"
         android:textColor="#fff"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,8 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Naar rechts"
         android:backgroundTint="#EC2525"
+        android:text="Naar rechts"
         android:textColor="#fff"
         app:layout_constraintStart_toEndOf="@+id/btnLinks"
         app:layout_constraintTop_toTopOf="@+id/btnLinks" />

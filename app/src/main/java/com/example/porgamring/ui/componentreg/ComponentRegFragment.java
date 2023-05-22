@@ -100,7 +100,7 @@ public class ComponentRegFragment extends Fragment {
                             Thread thrCreate = new Thread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    //String response = SentAPI.post("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/component/post", body);
+                                    String response = SentAPI.post("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/component/post", body);
                                 }
                             });
                             try {

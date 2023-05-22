@@ -51,20 +51,10 @@ public class UpdatePersoon extends AppCompatActivity {
         arr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sBloed.setAdapter(arr);
 
-        String naamOud = "";
-        String datumOud = "";
-        int gewichtOud = 0;
-        String bloedgroepOud = "";
-
-        naam = "";
-        datum = "";
-        gewicht = 0;
-        bloedgroep = "";
-
-//        naamOud = getIntent().getStringExtra("naam");
-//        datumOud = getIntent().getStringExtra("datum");
-//        gewichtOud = getIntent().getIntExtra("gewicht", 0);
-//        bloedgroepOud = getIntent().getStringExtra("bloed");
+        String naamOud = getIntent().getStringExtra("naam");
+        String datumOud = getIntent().getStringExtra("datum");
+        int gewichtOud = getIntent().getIntExtra("gewicht", 0);
+        String bloedgroepOud = getIntent().getStringExtra("bloed");
 
         dateButton = findViewById(R.id.datePickerButton);
         DatePicker datePicker = new DatePicker(dateButton, this);
@@ -78,7 +68,6 @@ public class UpdatePersoon extends AppCompatActivity {
                 datePicker.datePickerDialog.show();
             }
         });
-
 
         String finalBloedgroepOud = bloedgroepOud;
         String finalNaamOud = naamOud;
