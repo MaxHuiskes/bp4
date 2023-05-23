@@ -6,21 +6,16 @@ import com.example.porgamring.model.Component;
 import com.example.porgamring.model.Draai;
 import com.example.porgamring.model.Persoon;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.*;
 
 import java.util.ArrayList;
 
 public class JSONBuilder {
     public ArrayList<Persoon> buildHups(String data) {
-        ArrayList<Persoon> hubs = new ArrayList();
-        // JSONParser parser = new JSONParser();
+        ArrayList<Persoon> hubs = new ArrayList<Persoon>();
         try {
-            Log.i("try-catch", "1");
 
             JSONObject json = new JSONObject(data);
-            Log.i("try-catch", "2");
             JSONArray jaItems = (JSONArray) json.get("items");
             for (int i = 0; i < jaItems.length(); i++) {
 
@@ -29,15 +24,12 @@ public class JSONBuilder {
                 String naam = (userDetail.getString("strnaam"));
                 String dtmDatum = (userDetail.getString("dtmdatum"));
                 int gewicht = Integer.parseInt(userDetail.getString("intgewicht"));
-                Log.e("json gewicht", String.valueOf(gewicht));
                 String strbloedgroep = (userDetail.getString("strbloedgroep"));
-                Log.e("bloed", strbloedgroep);
 
                 Persoon h = new Persoon();
                 h.setStrNaam(naam);
                 h.setDtmDatum(dtmDatum);
                 h.setIntGewicht(gewicht);
-                Log.e("gwicht opgelsgen", String.valueOf(h.getIntGewicht()));
                 h.setStrBloedgroep(strbloedgroep);
                 // adds current object to list of objects
                 hubs.add(h);

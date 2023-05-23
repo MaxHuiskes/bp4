@@ -25,15 +25,15 @@ public class APIHandler {
             // url to json file
             URL url
                     = new URL(data);
-            Log.i("urldone", url.toString());
+            //Log.i("urldone", url.toString());
             HttpURLConnection connection
                     = (HttpURLConnection) url.openConnection();
-            Log.i("HttpURLConnection", connection.toString());
+            //Log.i("HttpURLConnection", connection.toString());
             connection.setRequestMethod("GET");
             connection.connect();
 
             int responsecode = connection.getResponseCode();
-            Log.i("Resposecode", String.valueOf(responsecode));
+            //Log.i("Resposecode", String.valueOf(responsecode));
             if (responsecode != 200) {
                 throw new RuntimeException("RersponseCode: " + responsecode);
             } else {
@@ -41,7 +41,7 @@ public class APIHandler {
                 Scanner scanner = new Scanner(url.openStream());
                 while (scanner.hasNext()) {
                     stringBuilder.append(scanner.nextLine());
-                    Log.i("stringbuilder", stringBuilder.toString());
+                    //Log.i("stringbuilder", stringBuilder.toString());
                 }
                 scanner.close();
             }

@@ -40,7 +40,6 @@ public class Persoon {
     }
 
     public void setStrNaam(String strNaam) {
-        Log.e("naam\t\t", strNaam);
         this.strNaam = strNaam;
     }
 
