@@ -70,7 +70,22 @@ public class ExampleUnitTest {
     public void testAPIHandler(){
         APIHandler a = new APIHandler();
         String json = a.getProducten("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get");
-        String expected = "{\"items\":[{\"strnaam\":\"max\",\"dtmdatum\":\"2000-10-28T00:00:00Z\",\"intgewicht\":82,\"strbloedgroep\":\"a+\"},{\"strnaam\":\"koen\",\"dtmdatum\":\"2023-05-15T00:00:00Z\",\"intgewicht\":81,\"strbloedgroep\":\"B+\"}],\"hasMore\":false,\"limit\":25,\"offset\":0,\"count\":2,\"links\":[{\"rel\":\"self\",\"href\":\"https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get\"},{\"rel\":\"describedby\",\"href\":\"https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/metadata-catalog/persoon/item\"},{\"rel\":\"first\",\"href\":\"https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get\"}]}";
+        String expected = "{\"items\":[{\"strnaam\":\"Jantje Van Der Spek\",\"dtmdatum\":\"1900-01-02T00:00:00Z\",\"intgewicht\":93,\"strbloedgroep\":\"0+\"},{\"strnaam\":\"max\",\"dtmdatum\":\"2000-10-28T00:00:00Z\",\"intgewicht\":82,\"strbloedgroep\":\"a+\"},{\"strnaam\":\"koen\",\"dtmdatum\":\"2023-05-15T00:00:00Z\",\"intgewicht\":81,\"strbloedgroep\":\"B+\"}],\"hasMore\":false,\"limit\":25,\"offset\":0,\"count\":3,\"links\":[{\"rel\":\"self\",\"href\":\"https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get\"},{\"rel\":\"describedby\",\"href\":\"https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/metadata-catalog/persoon/item\"},{\"rel\":\"first\",\"href\":\"https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get\"}]}";
         assertEquals(expected,json);
     }
+
+    /**
+     * Intergratie test van klasse Draai en Regressie test van klasse Component
+     */
+    @Test
+    public void testComponentDraai(){
+        Component c = new Component();
+        Persoon p = new Persoon("Max Huiskes","2000-10-28T00:00:00Z",83,"A+");
+        c.setPersoon(p);
+        assertEquals(p,c.getPersoon());
+        Draai d = new Draai();
+        d.setPersoon(p);
+        assertEquals(p,d.getPersoon());
+    }
+
 }

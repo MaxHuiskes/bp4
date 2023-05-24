@@ -38,6 +38,7 @@ public class BluethootFragment extends Fragment {
     private ArrayList<Persoon> persoonArrayList;
     private Spinner spPer;
 
+    @SuppressLint("SetTextI18n")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         BluethootViewModel slideshowViewModel =
@@ -58,13 +59,6 @@ public class BluethootFragment extends Fragment {
         pairedDevicesArrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1);
         tvStatus.setText("Geen verbinding.");
 
-        ArrayList<Persoon> arrPersoon = new ArrayList<Persoon>();
-        ArrayAdapter<Persoon> arr = new ArrayAdapter<Persoon>(getActivity(),
-                android.R.layout.simple_spinner_dropdown_item,
-                arrPersoon);
-        arr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-
         Thread thPersoonGegevens = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -79,17 +73,21 @@ public class BluethootFragment extends Fragment {
             Log.e("InterruptedException", e.getMessage());
         }
 
-        arrPersoon.addAll(persoonArrayList);
+        ArrayAdapter<Persoon> arr = new ArrayAdapter<Persoon>(getActivity(),
+                android.R.layout.simple_spinner_dropdown_item,
+                persoonArrayList);
+        arr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spPer.setAdapter(arr);
 
         spPer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                MainActivity.bedlichter = arrPersoon.get(i);
+                MainActivity.bedlichter = persoonArrayList.get(i);
                 Toast.makeText(getActivity(),
                                 MainActivity.bedlichter.toString(),
                                 Toast.LENGTH_LONG)
                         .show();
-                Log.e("\t\t\t\t\t\t\t\t\t", arrPersoon.get(i).toString());
+                Log.e("\t\t\t\t\t\t\t\t\t", persoonArrayList.get(i).toString());
             }
 
             @Override
@@ -97,7 +95,7 @@ public class BluethootFragment extends Fragment {
 
             }
         });
-        spPer.setAdapter(arr);
+
 
         btnlijst.setOnClickListener(view -> {
             bluetoothSend.showPairedDevices(list, pairedDevicesArrayAdapter);
