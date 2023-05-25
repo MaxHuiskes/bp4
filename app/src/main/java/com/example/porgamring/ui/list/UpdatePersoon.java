@@ -1,5 +1,6 @@
 package com.example.porgamring.ui.list;
 
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,7 +15,11 @@ import com.example.porgamring.helpers.DatePicker;
 import com.example.porgamring.R;
 import com.example.porgamring.helpers.SentAPI;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class UpdatePersoon extends AppCompatActivity {
 
@@ -35,7 +40,6 @@ public class UpdatePersoon extends AppCompatActivity {
         btnOpslaan = findViewById(R.id.btnOpslaan);
 
         ArrayList<String> arbloed = new ArrayList<>();
-        arbloed.add("niet veranderen");
         arbloed.add("A-");
         arbloed.add("A+");
         arbloed.add("B-");
@@ -74,18 +78,14 @@ public class UpdatePersoon extends AppCompatActivity {
         int finalGewichtOud = gewichtOud;
         String finalDatumOud = datumOud;
 
-
+        selectSpinnerValue(sBloed,bloedgroepOud);
         btnOpslaan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Thread thrUpdate = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        if (sBloed.getSelectedItem().toString().equals("niet veranderen")) {
-                            bloedgroep = finalBloedgroepOud;
-                        } else {
-                            bloedgroep = sBloed.getSelectedItem().toString();
-                        }
+                        bloedgroep = sBloed.getSelectedItem().toString();
                         if (etNaam.getText().toString().isEmpty()) {
                             naam = finalNaamOud;
                         } else {
@@ -110,7 +110,12 @@ public class UpdatePersoon extends AppCompatActivity {
                                 "\"odate\":\"" + finalDatumOud + "\"" +
                                 "}";
                         Log.e("body", body);
-                        SentAPI.put("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/put", body);
+                        if (datum.equals(finalDatumOud)){
+                            SentAPI.put("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/putOld", body);
+                        } else{
+                            SentAPI.put("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/put", body);
+                        }
+
                     }
                 });
                 try {
@@ -122,5 +127,17 @@ public class UpdatePersoon extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    /**
+     * function to select certain value in spinner
+     */
+    private void selectSpinnerValue(Spinner spinner, String myString){
+        int index = 0;
+        for(int i = 0; i < spinner.getCount(); i++){
+            if(spinner.getItemAtPosition(i).toString().equals(myString)){
+                spinner.setSelection(i);
+                break;
+            }
+        }
     }
 }

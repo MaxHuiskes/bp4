@@ -79,6 +79,8 @@ public class BluethootFragment extends Fragment {
         arr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spPer.setAdapter(arr);
 
+        selectSpinnerValue(spPer,"max 2000-10-28");
+
         spPer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -145,6 +147,19 @@ public class BluethootFragment extends Fragment {
         });
 
         return root;
+    }
+
+    /**
+     * function to select certain value in spinner
+     */
+    private void selectSpinnerValue(Spinner spinner, String myString){
+        int index = 0;
+        for(int i = 0; i < spinner.getCount(); i++){
+            if(spinner.getItemAtPosition(i).toString().equals(myString)){
+                spinner.setSelection(i);
+                break;
+            }
+        }
     }
 
 }

@@ -25,7 +25,6 @@ import java.util.ArrayList;
 public class ListFragment<ListArray> extends Fragment {
 
     private FragmentPersonenBinding binding;
-    private Button btn;
     private ListView listView;
     private ArrayList<Persoon> alPersoon = new ArrayList<Persoon>();
 
@@ -37,7 +36,6 @@ public class ListFragment<ListArray> extends Fragment {
         binding = FragmentPersonenBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        btn = binding.btn;
         listView = binding.personen;
 
         APIHandler api = new APIHandler();

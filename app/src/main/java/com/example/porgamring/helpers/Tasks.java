@@ -151,18 +151,4 @@ public class Tasks {
         }, 0, 30, TimeUnit.DAYS);
 
     }
-
-
-    /**
-     * function to select certain value in spinner
-     */
-    private void selectSpinnerValue(Spinner spinner, String myString){
-        int index = 0;
-        for(int i = 0; i < spinner.getCount(); i++){
-            if(spinner.getItemAtPosition(i).toString().equals(myString)){
-                spinner.setSelection(i);
-                break;
-            }
-        }
-    }
 }
