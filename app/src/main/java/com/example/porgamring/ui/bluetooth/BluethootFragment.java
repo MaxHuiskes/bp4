@@ -96,7 +96,6 @@ public class BluethootFragment extends Fragment {
             }
         });
 
-
         btnlijst.setOnClickListener(view -> {
             bluetoothSend.showPairedDevices(list, pairedDevicesArrayAdapter);
         });

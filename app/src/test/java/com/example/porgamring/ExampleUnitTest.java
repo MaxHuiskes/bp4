@@ -69,8 +69,8 @@ public class ExampleUnitTest {
     @Test
     public void testAPIHandler(){
         APIHandler a = new APIHandler();
-        String json = a.getProducten("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get");
-        String expected = "{\"items\":[{\"strnaam\":\"Jantje Van Der Spek\",\"dtmdatum\":\"1900-01-02T00:00:00Z\",\"intgewicht\":93,\"strbloedgroep\":\"0+\"},{\"strnaam\":\"max\",\"dtmdatum\":\"2000-10-28T00:00:00Z\",\"intgewicht\":82,\"strbloedgroep\":\"a+\"},{\"strnaam\":\"koen\",\"dtmdatum\":\"2023-05-15T00:00:00Z\",\"intgewicht\":81,\"strbloedgroep\":\"B+\"}],\"hasMore\":false,\"limit\":25,\"offset\":0,\"count\":3,\"links\":[{\"rel\":\"self\",\"href\":\"https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get\"},{\"rel\":\"describedby\",\"href\":\"https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/metadata-catalog/persoon/item\"},{\"rel\":\"first\",\"href\":\"https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get\"}]}";
+        String json = a.getProducten("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get/max/2000-10-28");
+        String expected = "{\"items\":[{\"strnaam\":\"max\",\"dtmdatum\":\"2000-10-28T00:00:00Z\",\"intgewicht\":82,\"strbloedgroep\":\"a+\"}],\"hasMore\":false,\"limit\":25,\"offset\":0,\"count\":1,\"links\":[{\"rel\":\"self\",\"href\":\"https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get/max/2000-10-28\"},{\"rel\":\"describedby\",\"href\":\"https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/metadata-catalog/persoon/get/max/item\"},{\"rel\":\"first\",\"href\":\"https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get/max/2000-10-28\"}]}";
         assertEquals(expected,json);
     }
 
@@ -88,4 +88,44 @@ public class ExampleUnitTest {
         assertEquals(p,d.getPersoon());
     }
 
+    /**
+     * Intergratie test van klasse Draai en Regressie test van klasse Persoon
+     */
+    @Test
+    public void testPersoonDraai(){
+        Persoon p = new Persoon();
+        p.setStrNaam("Max Huiskes");
+        p.setDtmDatum("2000-10-28T00:00:00Z");
+        p.setStrBloedgroep("A+");
+        p.setIntGewicht(3);
+        assertEquals("Max Huiskes",p.getStrNaam());
+        assertEquals("2000-10-28",p.getDtmDatum());
+        assertEquals("A+",p.getStrBloedgroep());
+        assertEquals(3,p.getIntGewicht());
+
+        Draai d = new Draai();
+        d.setPersoon(p);
+        assertEquals(p, d.getPersoon());
+    }
+
+    /**
+     * Intergratie test van klasse APIHandler en Regressie test van klasse Persoon
+     */
+    @Test
+    public void testPesoonAPIHandler(){
+        Persoon p = new Persoon();
+        p.setStrNaam("Max Huiskes");
+        p.setDtmDatum("2000-10-28T00:00:00Z");
+        p.setStrBloedgroep("A+");
+        p.setIntGewicht(3);
+        assertEquals("Max Huiskes",p.getStrNaam());
+        assertEquals("2000-10-28",p.getDtmDatum());
+        assertEquals("A+",p.getStrBloedgroep());
+        assertEquals(3,p.getIntGewicht());
+
+        APIHandler a = new APIHandler();
+        String json = a.getProducten("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get/max/2000-10-28");
+        String expected = "{\"items\":[{\"strnaam\":\"max\",\"dtmdatum\":\"2000-10-28T00:00:00Z\",\"intgewicht\":82,\"strbloedgroep\":\"a+\"}],\"hasMore\":false,\"limit\":25,\"offset\":0,\"count\":1,\"links\":[{\"rel\":\"self\",\"href\":\"https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get/max/2000-10-28\"},{\"rel\":\"describedby\",\"href\":\"https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/metadata-catalog/persoon/get/max/item\"},{\"rel\":\"first\",\"href\":\"https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get/max/2000-10-28\"}]}";
+        assertEquals(expected,json);
+    }
 }
