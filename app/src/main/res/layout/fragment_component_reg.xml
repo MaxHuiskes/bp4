@@ -7,14 +7,14 @@
     tools:context=".ui.componentreg.ComponentRegFragment">
 
     <TextView
-    android:id="@+id/tvNaamPro"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="28dp"
-    android:layout_marginTop="28dp"
-    android:text="Naam product:"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/tvNaamPro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
+        android:text="Naam product:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvModel"

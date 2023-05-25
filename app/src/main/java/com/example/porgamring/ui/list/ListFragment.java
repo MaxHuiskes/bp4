@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -16,8 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.porgamring.helpers.APIHandler;
 import com.example.porgamring.databinding.FragmentPersonenBinding;
+import com.example.porgamring.helpers.APIHandler;
 import com.example.porgamring.model.Persoon;
 
 import java.util.ArrayList;
@@ -54,8 +53,6 @@ public class ListFragment<ListArray> extends Fragment {
             Log.e("InterruptedException", e.getMessage());
         }
 
-
-
         ArrayAdapter<Persoon> arr = new ArrayAdapter<Persoon>(getActivity(),
                 android.R.layout.simple_spinner_dropdown_item,
                 alPersoon);
@@ -81,17 +78,15 @@ public class ListFragment<ListArray> extends Fragment {
                 k.putExtra("datum", datum);
                 k.putExtra("bloed", bloed);
                 k.putExtra("gewicht", gewicht);
-                k.putExtra("work",true);
+                k.putExtra("work", true);
                 try {
                     startActivity(k);
                 } catch (Exception ex) {
                     Log.i("activity", ex.getMessage());
                 }
                 Toast.makeText(getActivity(), "open item", Toast.LENGTH_SHORT).show();
-
             }
         });
-
 
         return root;
     }

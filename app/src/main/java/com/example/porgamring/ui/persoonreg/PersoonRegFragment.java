@@ -15,9 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.porgamring.databinding.FragmentPersoonRegBinding;
 import com.example.porgamring.helpers.DatePicker;
 import com.example.porgamring.helpers.SentAPI;
-import com.example.porgamring.databinding.FragmentPersoonRegBinding;
 
 import java.util.ArrayList;
 
@@ -106,7 +106,7 @@ public class PersoonRegFragment<ListArray> extends Fragment {
                                     @Override
                                     public void run() {
 
-                                        String response = SentAPI.post("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/post",body);
+                                        String response = SentAPI.post("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/post", body);
 
                                     }
                                 });

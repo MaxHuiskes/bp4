@@ -13,10 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.porgamring.helpers.BluetoothSend;
 import com.example.porgamring.MainActivity;
-import com.example.porgamring.helpers.SentAPI;
 import com.example.porgamring.databinding.FragmentAansturingBinding;
+import com.example.porgamring.helpers.BluetoothSend;
+import com.example.porgamring.helpers.SentAPI;
 import com.example.porgamring.model.Persoon;
 
 import java.io.IOException;

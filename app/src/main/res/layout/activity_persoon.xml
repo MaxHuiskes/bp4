@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:text="Gewicht:"
         app:layout_constraintStart_toStartOf="@+id/tvbloed"
-        app:layout_constraintTop_toBottomOf="@+id/tvbloed"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvbloed" />
 
     <Button
         android:id="@+id/btnOnder"
@@ -64,6 +64,7 @@
         android:layout_height="429dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
     <TextView
         android:id="@+id/tvAantal"
         android:layout_width="wrap_content"

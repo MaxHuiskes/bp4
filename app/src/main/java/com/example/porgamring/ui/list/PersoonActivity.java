@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.porgamring.helpers.APIHandler;
 import com.example.porgamring.R;
+import com.example.porgamring.helpers.APIHandler;
 import com.example.porgamring.model.Draai;
 import com.example.porgamring.model.Persoon;
 

@@ -1,6 +1,5 @@
 package com.example.porgamring.ui.list;
 
-import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,15 +10,11 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.porgamring.helpers.DatePicker;
 import com.example.porgamring.R;
+import com.example.porgamring.helpers.DatePicker;
 import com.example.porgamring.helpers.SentAPI;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 public class UpdatePersoon extends AppCompatActivity {
 
@@ -78,7 +73,7 @@ public class UpdatePersoon extends AppCompatActivity {
         int finalGewichtOud = gewichtOud;
         String finalDatumOud = datumOud;
 
-        selectSpinnerValue(sBloed,bloedgroepOud);
+        selectSpinnerValue(sBloed, bloedgroepOud);
         btnOpslaan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,9 +105,9 @@ public class UpdatePersoon extends AppCompatActivity {
                                 "\"odate\":\"" + finalDatumOud + "\"" +
                                 "}";
                         Log.e("body", body);
-                        if (datum.equals(finalDatumOud)){
+                        if (datum.equals(finalDatumOud)) {
                             SentAPI.put("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/putOld", body);
-                        } else{
+                        } else {
                             SentAPI.put("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/put", body);
                         }
 
@@ -128,13 +123,14 @@ public class UpdatePersoon extends AppCompatActivity {
             }
         });
     }
+
     /**
      * function to select certain value in spinner
      */
-    private void selectSpinnerValue(Spinner spinner, String myString){
+    private void selectSpinnerValue(Spinner spinner, String myString) {
         int index = 0;
-        for(int i = 0; i < spinner.getCount(); i++){
-            if(spinner.getItemAtPosition(i).toString().equals(myString)){
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).toString().equals(myString)) {
                 spinner.setSelection(i);
                 break;
             }

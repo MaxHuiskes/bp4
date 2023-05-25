@@ -6,7 +6,9 @@ import com.example.porgamring.model.Component;
 import com.example.porgamring.model.Draai;
 import com.example.porgamring.model.Persoon;
 
-import org.json.*;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 

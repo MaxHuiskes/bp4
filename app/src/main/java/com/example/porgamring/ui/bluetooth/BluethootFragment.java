@@ -18,10 +18,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.porgamring.helpers.APIHandler;
-import com.example.porgamring.helpers.BluetoothSend;
 import com.example.porgamring.MainActivity;
 import com.example.porgamring.databinding.FragmentBluethootBinding;
+import com.example.porgamring.helpers.APIHandler;
+import com.example.porgamring.helpers.BluetoothSend;
 import com.example.porgamring.model.Persoon;
 
 import java.io.IOException;
@@ -51,7 +51,6 @@ public class BluethootFragment extends Fragment {
         APIHandler api = new APIHandler();
 
 
-
         btnDis = binding.btnDis;
         btnlijst = binding.btnList;
         list = binding.lvList;
@@ -79,7 +78,7 @@ public class BluethootFragment extends Fragment {
         arr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spPer.setAdapter(arr);
 
-        selectSpinnerValue(spPer,"max 2000-10-28");
+        selectSpinnerValue(spPer, "max 2000-10-28");
 
         spPer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -152,10 +151,10 @@ public class BluethootFragment extends Fragment {
     /**
      * function to select certain value in spinner
      */
-    private void selectSpinnerValue(Spinner spinner, String myString){
+    private void selectSpinnerValue(Spinner spinner, String myString) {
         int index = 0;
-        for(int i = 0; i < spinner.getCount(); i++){
-            if(spinner.getItemAtPosition(i).toString().equals(myString)){
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).toString().equals(myString)) {
                 spinner.setSelection(i);
                 break;
             }

@@ -13,7 +13,7 @@ public class Persoon {
         try {
             dtmDatum = dtmDatum.substring(0, dtmDatum.indexOf('T'));
         } catch (Exception e) {
-            Log.e("Exception",e.getMessage());
+            Log.e("Exception", e.getMessage());
         }
         this.dtmDatum = dtmDatum;
         this.strBloedgroep = strBloedgroep;

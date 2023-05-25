@@ -47,6 +47,6 @@ public class Draai {
 
     @Override
     public String toString() {
-        return "Naar " +strKant + " op " + dtmMoment;
+        return "Naar " + strKant + " op " + dtmMoment;
     }
 }

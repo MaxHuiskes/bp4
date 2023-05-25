@@ -10,14 +10,12 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
 import com.example.porgamring.MainActivity;
 import com.example.porgamring.R;
-import com.example.porgamring.helpers.SentAPI;
 
 import java.io.IOException;
 import java.text.DateFormat;
