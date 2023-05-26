@@ -22,6 +22,7 @@ import com.example.porgamring.MainActivity;
 import com.example.porgamring.databinding.FragmentBluethootBinding;
 import com.example.porgamring.helpers.APIHandler;
 import com.example.porgamring.helpers.BluetoothSend;
+import com.example.porgamring.helpers.MySpinner;
 import com.example.porgamring.model.Persoon;
 
 import java.io.IOException;
@@ -55,15 +56,10 @@ public class BluethootFragment extends Fragment {
         btnlijst = binding.btnList;
         list = binding.lvList;
         tvStatus = binding.tvStatus;
-        pairedDevicesArrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1);
+        pairedDevicesArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1);
         tvStatus.setText("Geen verbinding.");
 
-        Thread thPersoonGegevens = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                persoonArrayList = api.getAlHups("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get");
-            }
-        });
+        Thread thPersoonGegevens = new Thread(() -> persoonArrayList = api.getAlHups("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get"));
 
         try {
             thPersoonGegevens.start();
@@ -72,13 +68,13 @@ public class BluethootFragment extends Fragment {
             Log.e("InterruptedException", e.getMessage());
         }
 
-        ArrayAdapter<Persoon> arr = new ArrayAdapter<Persoon>(getActivity(),
+        ArrayAdapter<Persoon> arr = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_spinner_dropdown_item,
                 persoonArrayList);
         arr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spPer.setAdapter(arr);
 
-        selectSpinnerValue(spPer, "max 2000-10-28");
+        MySpinner.selectSpinnerValue(spPer, "max 2000-10-28");
 
         spPer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -118,29 +114,24 @@ public class BluethootFragment extends Fragment {
 
         });
 
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String send;
-                String device = list.getAdapter().getItem(i).toString();
-                Log.i("diveice name", device);
+        list.setOnItemClickListener((adapterView, view, i, l) -> {
+            String device = list.getAdapter().getItem(i).toString();
+            Log.i("diveice name", device);
 
+            try {
+                bluetoothSend.createConnection(device);
+            } catch (IOException e) {
+                Log.e("IOExeptoin", e.getMessage());
+            } finally {
                 try {
-                    bluetoothSend.createConnection(device);
-                } catch (IOException e) {
-                    Log.e("IOExeptoin", e.getMessage());
-                } finally {
-                    try {
-                        if (bluetoothSend.isConnected()) {
-                            tvStatus.setText("Verbonden.");
-                            pairedDevicesArrayAdapter.clear();
-                            Toast.makeText(getContext().getApplicationContext(), "Verbinding is gemaakt.", Toast.LENGTH_SHORT).show();
+                    if (bluetoothSend.isConnected()) {
+                        tvStatus.setText("Verbonden.");
+                        pairedDevicesArrayAdapter.clear();
+                        Toast.makeText(getContext().getApplicationContext(), "Verbinding is gemaakt.", Toast.LENGTH_SHORT).show();
 
-                        }
-                    } catch (IOException e) {
-                        Log.e("IOException e", e.getMessage());
                     }
+                } catch (IOException e) {
+                    Log.e("IOException e", e.getMessage());
                 }
             }
         });
@@ -148,17 +139,6 @@ public class BluethootFragment extends Fragment {
         return root;
     }
 
-    /**
-     * function to select certain value in spinner
-     */
-    private void selectSpinnerValue(Spinner spinner, String myString) {
-        int index = 0;
-        for (int i = 0; i < spinner.getCount(); i++) {
-            if (spinner.getItemAtPosition(i).toString().equals(myString)) {
-                spinner.setSelection(i);
-                break;
-            }
-        }
-    }
+
 
 }

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.porgamring.R;
 import com.example.porgamring.helpers.DatePicker;
+import com.example.porgamring.helpers.MySpinner;
 import com.example.porgamring.helpers.SentAPI;
 
 import java.util.ArrayList;
@@ -68,12 +69,8 @@ public class UpdatePersoon extends AppCompatActivity {
             }
         });
 
-        String finalBloedgroepOud = bloedgroepOud;
-        String finalNaamOud = naamOud;
-        int finalGewichtOud = gewichtOud;
-        String finalDatumOud = datumOud;
+        MySpinner.selectSpinnerValue(sBloed, bloedgroepOud);
 
-        selectSpinnerValue(sBloed, bloedgroepOud);
         btnOpslaan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,17 +79,17 @@ public class UpdatePersoon extends AppCompatActivity {
                     public void run() {
                         bloedgroep = sBloed.getSelectedItem().toString();
                         if (etNaam.getText().toString().isEmpty()) {
-                            naam = finalNaamOud;
+                            naam = naamOud;
                         } else {
                             naam = etNaam.getText().toString();
                         }
                         if (etGewicht.getText().toString().isEmpty()) {
-                            gewicht = finalGewichtOud;
+                            gewicht = gewichtOud;
                         } else {
                             gewicht = Integer.getInteger(etGewicht.getText().toString());
                         }
                         if (dateButton.getText().toString().equals(datePicker.getTodaysDate())) {
-                            datum = finalDatumOud;
+                            datum = datumOud;
                         } else {
                             datum = dateButton.getText().toString();
                         }
@@ -101,11 +98,11 @@ public class UpdatePersoon extends AppCompatActivity {
                                 "\"datum\":\"" + datum + "\"," +
                                 "\"gewicht\":" + gewicht + "," +
                                 "\"bloed\":\"" + bloedgroep + "\"," +
-                                "\"onaam\":\"" + finalNaamOud + "\"," +
-                                "\"odate\":\"" + finalDatumOud + "\"" +
+                                "\"onaam\":\"" + naamOud + "\"," +
+                                "\"odate\":\"" + datumOud + "\"" +
                                 "}";
                         Log.e("body", body);
-                        if (datum.equals(finalDatumOud)) {
+                        if (datum.equals(datumOud)) {
                             SentAPI.put("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/putOld", body);
                         } else {
                             SentAPI.put("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/put", body);
@@ -122,18 +119,5 @@ public class UpdatePersoon extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    /**
-     * function to select certain value in spinner
-     */
-    private void selectSpinnerValue(Spinner spinner, String myString) {
-        int index = 0;
-        for (int i = 0; i < spinner.getCount(); i++) {
-            if (spinner.getItemAtPosition(i).toString().equals(myString)) {
-                spinner.setSelection(i);
-                break;
-            }
-        }
     }
 }
