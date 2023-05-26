@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class JSONBuilder {
     public ArrayList<Persoon> buildHups(String data) {
-        ArrayList<Persoon> hubs = new ArrayList<Persoon>();
+        ArrayList<Persoon> hubs = new ArrayList<>();
         try {
 
             JSONObject json = new JSONObject(data);
@@ -43,7 +43,7 @@ public class JSONBuilder {
     }
 
     public ArrayList<Draai> buildVereisete(String data) {
-        ArrayList<Draai> hubs = new ArrayList();
+        ArrayList<Draai> hubs = new ArrayList<>();
         // JSONParser parser = new JSONParser();
         try {
             Log.i("try-catch", "1");
@@ -74,7 +74,7 @@ public class JSONBuilder {
     }
 
     public ArrayList<Component> buildTrans(String data) {
-        ArrayList<Component> hubs = new ArrayList();
+        ArrayList<Component> hubs = new ArrayList<>();
         // JSONParser parser = new JSONParser();
         try {
             Log.i("try-catch", "1");

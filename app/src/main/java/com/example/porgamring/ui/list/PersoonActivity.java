@@ -21,8 +21,6 @@ import java.util.ArrayList;
 
 public class PersoonActivity extends AppCompatActivity {
 
-    private Button btnUpdate, btnOnder;
-    private ListView listView;
     private ArrayList<Draai> lDraai;
     private ArrayList<Persoon> alPersoon;
     private TextView tvNaam, tvDatum, tvBloed, tvGewicht;
@@ -34,9 +32,9 @@ public class PersoonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_persoon);
 
-        btnOnder = findViewById(R.id.btnOnder);
-        btnUpdate = findViewById(R.id.btnUpdate);
-        listView = findViewById(R.id.lvDraai);
+        Button btnOnder = findViewById(R.id.btnOnder);
+        Button btnUpdate = findViewById(R.id.btnUpdate);
+        ListView listView = findViewById(R.id.lvDraai);
         tvBloed = findViewById(R.id.tvbloed);
         tvDatum = findViewById(R.id.tvDatum);
         tvGewicht = findViewById(R.id.tvGewicht);
@@ -51,12 +49,7 @@ public class PersoonActivity extends AppCompatActivity {
 
         String finalNaam = naam;
         String finalDatum = datum;
-        Thread thPersoonGegevens = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                alPersoon = api.getAlHups("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get/" + finalNaam + "/" + finalDatum);
-            }
-        });
+        Thread thPersoonGegevens = new Thread(() -> alPersoon = api.getAlHups("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get/" + finalNaam + "/" + finalDatum));
         try {
             thPersoonGegevens.start();
             thPersoonGegevens.join();
@@ -65,12 +58,7 @@ public class PersoonActivity extends AppCompatActivity {
         }
 
 
-        Thread thrdraai = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                lDraai = api.getAlVereiste("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/draai/get/" + finalNaam + "/" + finalDatum);
-            }
-        });
+        Thread thrdraai = new Thread(() -> lDraai = api.getAlVereiste("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/draai/get/" + finalNaam + "/" + finalDatum));
         try {
             thrdraai.start();
             thrdraai.join();
@@ -80,8 +68,8 @@ public class PersoonActivity extends AppCompatActivity {
 
         lDraai.sort((t1, t2) -> t2.getDtmMoment().compareTo(t1.getDtmMoment()));
 
-        String bloed = "";
-        int gewicht = 0;
+        String bloed;
+        int gewicht;
 
         bloed = alPersoon.get(0).getStrBloedgroep();
         gewicht = alPersoon.get(0).getIntGewicht();
@@ -89,7 +77,7 @@ public class PersoonActivity extends AppCompatActivity {
         tvBloed.setText(String.format("%s%s", tvBloed.getText(), bloed));
 
 
-        ArrayAdapter<Draai> arr = new ArrayAdapter<Draai>(PersoonActivity.this,
+        ArrayAdapter<Draai> arr = new ArrayAdapter<>(PersoonActivity.this,
                 android.R.layout.simple_spinner_dropdown_item,
                 lDraai);
         arr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -105,29 +93,23 @@ public class PersoonActivity extends AppCompatActivity {
         }
 
 
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent k = new Intent(PersoonActivity.this, UpdatePersoon.class);
-                k.putExtra("naam", finalNaam);
-                k.putExtra("datum", finalDatum);
+        btnUpdate.setOnClickListener(view -> {
+            Intent k = new Intent(PersoonActivity.this, UpdatePersoon.class);
+            k.putExtra("naam", finalNaam);
+            k.putExtra("datum", finalDatum);
 
-                k.putExtra("gewicht", alPersoon.get(0).getIntGewicht());
-                k.putExtra("bloed", alPersoon.get(0).getStrBloedgroep());
+            k.putExtra("gewicht", alPersoon.get(0).getIntGewicht());
+            k.putExtra("bloed", alPersoon.get(0).getStrBloedgroep());
 
-                startActivity(k);
-            }
+            startActivity(k);
         });
 
-        btnOnder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent k = new Intent(PersoonActivity.this, OnderdeelActivity.class);
-                k.putExtra("naam", finalNaam);
-                k.putExtra("datum", finalDatum);
-                k.putExtra("work", true);
-                startActivity(k);
-            }
+        btnOnder.setOnClickListener(view -> {
+            Intent k = new Intent(PersoonActivity.this, OnderdeelActivity.class);
+            k.putExtra("naam", finalNaam);
+            k.putExtra("datum", finalDatum);
+            k.putExtra("work", true);
+            startActivity(k);
         });
     }
 
@@ -135,12 +117,9 @@ public class PersoonActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        Thread thPersoonGegevens = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                APIHandler api = new APIHandler();
-                alPersoon = api.getAlHups("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get/" + naam + "/" + datum);
-            }
+        Thread thPersoonGegevens = new Thread(() -> {
+            APIHandler api = new APIHandler();
+            alPersoon = api.getAlHups("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/get/" + naam + "/" + datum);
         });
         try {
             thPersoonGegevens.start();

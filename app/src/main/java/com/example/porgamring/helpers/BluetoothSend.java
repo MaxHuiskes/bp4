@@ -34,6 +34,7 @@ public class BluetoothSend {
 
     @SuppressLint("MissingPermission")
     public void createConnection(String deviceName) throws IOException {
+        //noinspection StatementWithEmptyBody
         if (bluetoothAdapter == null) {
             // Device doesn't support Bluetooth
         } else if (!bluetoothAdapter.isEnabled()) {
@@ -88,6 +89,7 @@ public class BluetoothSend {
         return socket.isConnected();
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
     @SuppressLint("MissingPermission")
     public void showPairedDevices(ListView pairedDevicesListView, ArrayAdapter<String> pairedDevicesArrayAdapter) {
 

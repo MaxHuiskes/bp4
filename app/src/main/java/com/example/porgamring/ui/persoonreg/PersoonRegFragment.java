@@ -22,11 +22,10 @@ import com.example.porgamring.helpers.SentAPI;
 import java.util.ArrayList;
 
 
-public class PersoonRegFragment<ListArray> extends Fragment {
+public class PersoonRegFragment extends Fragment {
 
     private FragmentPersoonRegBinding binding;
-    private FragmentPersoonRegBinding FragmentProductListBinding;
-    private Button dateButton, btnOpslaan;
+    private Button dateButton;
     private EditText etNaam, etGewicht;
     private Spinner sBloed;
     private String body;
@@ -44,18 +43,13 @@ public class PersoonRegFragment<ListArray> extends Fragment {
 
         dateButton.setText(datePicker.getTodaysDate());
 
-        dateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                datePicker.datePickerDialog.show();
-            }
-        });
+        dateButton.setOnClickListener(view -> datePicker.datePickerDialog.show());
 
         etGewicht = binding.etGewicht;
         etNaam = binding.etNaam;
 
         sBloed = binding.sBloed;
-        btnOpslaan = binding.btnOpslaan;
+        Button btnOpslaan = binding.btnOpslaan;
         ArrayList<String> arbloed = new ArrayList<>();
         arbloed.add("A-");
         arbloed.add("A+");
@@ -66,58 +60,52 @@ public class PersoonRegFragment<ListArray> extends Fragment {
         arbloed.add("0-");
         arbloed.add("0+");
 
-        ArrayAdapter<String> arr = new ArrayAdapter<String>(getContext(),
+        ArrayAdapter<String> arr = new ArrayAdapter<>(getContext(),
                 android.R.layout.simple_spinner_dropdown_item,
                 arbloed);
         arr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sBloed.setAdapter(arr);
 
 
-        btnOpslaan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String gewicht, bloed, naam;
-                String datum;
-                if (etGewicht.getText().toString().isEmpty()) {
+        btnOpslaan.setOnClickListener(view -> {
+            String gewicht, bloed, naam;
+            String datum;
+            if (etGewicht.getText().toString().isEmpty()) {
+                Toast.makeText(getContext(), "Niet alle gegevens zijn in gevuld", Toast.LENGTH_SHORT).show();
+            } else {
+                gewicht = etGewicht.getText().toString();
+                if (etNaam.getText().toString().isEmpty()) {
                     Toast.makeText(getContext(), "Niet alle gegevens zijn in gevuld", Toast.LENGTH_SHORT).show();
                 } else {
-                    gewicht = etGewicht.getText().toString();
-                    if (etNaam.getText().toString().isEmpty()) {
+                    naam = etNaam.getText().toString();
+                    if (sBloed.getSelectedItem().toString().isEmpty()) {
                         Toast.makeText(getContext(), "Niet alle gegevens zijn in gevuld", Toast.LENGTH_SHORT).show();
                     } else {
-                        naam = etNaam.getText().toString();
-                        if (sBloed.getSelectedItem().toString().isEmpty()) {
+                        bloed = sBloed.getSelectedItem().toString();
+                        if (dateButton.getText().toString().equals(datePicker.getTodaysDate())) {
                             Toast.makeText(getContext(), "Niet alle gegevens zijn in gevuld", Toast.LENGTH_SHORT).show();
                         } else {
-                            bloed = sBloed.getSelectedItem().toString();
-                            if (dateButton.getText().toString().equals(datePicker.getTodaysDate())) {
-                                Toast.makeText(getContext(), "Niet alle gegevens zijn in gevuld", Toast.LENGTH_SHORT).show();
-                            } else {
-                                datum = dateButton.getText().toString();
-                                body = "{" +
-                                        "\"naam\":\"" + naam + "\"," +
-                                        "\"datum\":\"" + datum + "\"," +
-                                        "\"gewicht\":" + gewicht + "," +
-                                        "\"bloed\":\"" + bloed + "\"" +
-                                        "}";
-                                Log.e("body", body);
+                            datum = dateButton.getText().toString();
+                            body = "{" +
+                                    "\"naam\":\"" + naam + "\"," +
+                                    "\"datum\":\"" + datum + "\"," +
+                                    "\"gewicht\":" + gewicht + "," +
+                                    "\"bloed\":\"" + bloed + "\"" +
+                                    "}";
+                            Log.e("body", body);
 
-                                Thread thrCreate = new Thread(new Runnable() {
-                                    @Override
-                                    public void run() {
+                            Thread thrCreate = new Thread(() -> {
 
-                                        String response = SentAPI.post("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/post", body);
+                                String response = SentAPI.post("https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/persoon/post", body);
 
-                                    }
-                                });
-                                try {
-                                    thrCreate.start();
-                                    thrCreate.join();
-                                    Toast.makeText(getContext(), "Persoon is geregistreerd", Toast.LENGTH_SHORT).show();
-                                } catch (InterruptedException e) {
-                                    Log.e("InterruptedException", e.getMessage());
+                            });
+                            try {
+                                thrCreate.start();
+                                thrCreate.join();
+                                Toast.makeText(getContext(), "Persoon is geregistreerd", Toast.LENGTH_SHORT).show();
+                            } catch (InterruptedException e) {
+                                Log.e("InterruptedException", e.getMessage());
 
-                                }
                             }
                         }
                     }

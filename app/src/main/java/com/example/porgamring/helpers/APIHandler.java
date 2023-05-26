@@ -14,9 +14,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class APIHandler {
-    private final String apiurl = "https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/";
-    private StringBuilder stringBuilder = new StringBuilder();
-    private JSONBuilder jsonBuilder = new JSONBuilder();
+    private final StringBuilder stringBuilder = new StringBuilder();
+    private final JSONBuilder jsonBuilder = new JSONBuilder();
 
     public String getProducten(String data) {
         //StringBuilder stringBuilder = new StringBuilder();
@@ -59,7 +58,7 @@ public class APIHandler {
 
     public ArrayList<Persoon> getAlHups(String api) {
         // gets al data from the json file and put them in object list
-        ArrayList<Persoon> hups = new ArrayList<Persoon>();
+        ArrayList<Persoon> hups;
         String s = getProducten(api);
         Log.i("JSON file", s);
         hups = jsonBuilder.buildHups(s);
@@ -68,7 +67,7 @@ public class APIHandler {
 
     public ArrayList<Draai> getAlVereiste(String apid) {
         // gets al data from the json file and put them in object list
-        ArrayList<Draai> hups = new ArrayList<Draai>();
+        ArrayList<Draai> hups;
         String s = getProducten(apid);
         Log.i("JSON file", s);
         hups = jsonBuilder.buildVereisete(s);
@@ -77,7 +76,7 @@ public class APIHandler {
 
     public ArrayList<Component> getAlTrans(String api) {
         // gets al data from the json file and put them in object list
-        ArrayList<Component> hups = new ArrayList<Component>();
+        ArrayList<Component> hups;
         String s = getProducten(api);
         Log.i("JSON file", s);
         hups = jsonBuilder.buildTrans(s);

@@ -9,8 +9,8 @@ import java.util.Calendar;
 
 public class DatePicker {
     public DatePickerDialog datePickerDialog;
-    private Button dateButton;
-    private Activity getActivity;
+    private final Button dateButton;
+    private final Activity getActivity;
 
     public DatePicker(Button dateButton, Activity getActivity) {
         this.dateButton = dateButton;
@@ -27,13 +27,10 @@ public class DatePicker {
     }
 
     public void initDatePicker(boolean future) {
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day) {
-                month = month + 1;
-                String date = makeDateString(day, month, year);
-                dateButton.setText(date);
-            }
+        DatePickerDialog.OnDateSetListener dateSetListener = (datePicker, year, month, day) -> {
+            month = month + 1;
+            String date = makeDateString(day, month, year);
+            dateButton.setText(date);
         };
 
         Calendar cal = Calendar.getInstance();

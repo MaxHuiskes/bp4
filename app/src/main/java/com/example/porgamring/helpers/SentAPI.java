@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 
 public class SentAPI {
     public static String post(String completeUrl, String body) {
-        URL url = null;
+        URL url;
         int responsecode = 0;
         try {
             url = new URL(completeUrl);
@@ -47,7 +47,7 @@ public class SentAPI {
     }
 
     public static String put(String completeUrl, String body) {
-        URL url = null;
+        URL url;
         int responsecode = 0;
         try {
             url = new URL(completeUrl);
@@ -81,7 +81,7 @@ public class SentAPI {
     }
 
     public static String delete(String urlComplete) throws IOException {
-        URL url = null;
+        URL url;
         int responsecode = 0;
         try {
             url = new URL(urlComplete);

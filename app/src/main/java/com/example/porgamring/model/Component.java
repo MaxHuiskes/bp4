@@ -1,5 +1,7 @@
 package com.example.porgamring.model;
 
+import androidx.annotation.NonNull;
+
 public class Component {
     private Persoon persoon;
     private String strModelNummer;
@@ -39,6 +41,7 @@ public class Component {
         this.strProduct = strProduct;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Product:" + strProduct + " Modelnummer:" + strModelNummer;

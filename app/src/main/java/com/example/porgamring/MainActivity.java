@@ -25,14 +25,13 @@ public class MainActivity extends AppCompatActivity {
     public static final BluetoothSend bluetoothSend = new BluetoothSend();
     public static Persoon bedlichter = new Persoon("", "", 0, "");
     private AppBarConfiguration mAppBarConfiguration;
-    private ActivityMainBinding binding;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        com.example.porgamring.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 

@@ -20,8 +20,6 @@ import com.example.porgamring.R;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -79,73 +77,71 @@ public class Tasks {
     public void hourlyTask() {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
-        scheduler.scheduleAtFixedRate(new Runnable() {
-            @Override
-            public void run() {
-                sendNotification("Je moet draaien!", "Het is weer tijd!");
-            }
-        }, 0, 1, TimeUnit.HOURS);
+        scheduler.scheduleAtFixedRate(() -> sendNotification("Je moet draaien!", "Het is weer tijd!"), 0, 1, TimeUnit.HOURS);
     }
 
     public void monthlyTask() {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
-        // Get the current date and time
-        LocalDateTime now = LocalDateTime.now();
 
-        // Calculate the delay until the next month
-        LocalDateTime nextMonth = now.plusMonths(1).withDayOfMonth(1).withHour(0).withMinute(0).withSecond(0).withNano(0);
-        Duration duration = Duration.between(now, nextMonth);
-        long initialDelay = duration.getSeconds();
-
-        scheduler.scheduleAtFixedRate(new Runnable() {
-            @Override
-            public void run() {
-                @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("MM");
-                Date date = new Date();
-                Log.e("Month", dateFormat.format(date));
-                String mon = "";
-                String dat = dateFormat.format(date);
-                if (dat.equals("12")) {
+        scheduler.scheduleAtFixedRate(() -> {
+            @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("MM");
+            Date date = new Date();
+            Log.e("Month", dateFormat.format(date));
+            String mon = "";
+            String dat = dateFormat.format(date);
+            switch (dat) {
+                case "12":
                     mon = "DEC";
-                } else if (dat.equals("01")) {
+                    break;
+                case "01":
                     mon = "JAN";
-                } else if (dat.equals("02")) {
+                    break;
+                case "02":
                     mon = "FEB";
-                } else if (dat.equals("03")) {
+                    break;
+                case "03":
                     mon = "MAR";
-                } else if (dat.equals("04")) {
+                    break;
+                case "04":
                     mon = "APR";
-                } else if (dat.equals("05")) {
+                    break;
+                case "05":
                     mon = "MAY";
-                } else if (dat.equals("06")) {
+                    break;
+                case "06":
                     mon = "JUN";
-                } else if (dat.equals("07")) {
+                    break;
+                case "07":
                     mon = "JUL";
-                } else if (dat.equals("08")) {
+                    break;
+                case "08":
                     mon = "AUG";
-                } else if (dat.equals("09")) {
+                    break;
+                case "09":
                     mon = "SEP";
-                } else if (dat.equals("10")) {
+                    break;
+                case "10":
                     mon = "OCT";
-                } else if (dat.equals("11")) {
+                    break;
+                case "11":
                     mon = "NOV";
-                }
-                String url = "https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/draai/delete/" + mon;
-                try {
-                    SentAPI.delete(url);
-                    Toast.makeText(getApplicationContext, "delete last month", Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    Log.e("Exception", e.getMessage());
-                }
-
-                try {
-                    SentAPI.delete(url);
-                } catch (IOException e) {
-                    Log.e("IOException", e.getMessage());
-                }
-
+                    break;
             }
+            String url = "https://gdfdbb33abf047a-jmaaadprog.adb.eu-amsterdam-1.oraclecloudapps.com/ords/maxh/draai/delete/" + mon;
+            try {
+                SentAPI.delete(url);
+                Toast.makeText(getApplicationContext, "delete last month", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Log.e("Exception", e.getMessage());
+            }
+
+            try {
+                SentAPI.delete(url);
+            } catch (IOException e) {
+                Log.e("IOException", e.getMessage());
+            }
+
         }, 0, 30, TimeUnit.DAYS);
 
     }

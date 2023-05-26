@@ -2,6 +2,8 @@ package com.example.porgamring.model;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 public class Persoon {
 
     private String strNaam;
@@ -59,6 +61,7 @@ public class Persoon {
         this.strBloedgroep = strBloedgroep;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return strNaam + ' ' + dtmDatum;

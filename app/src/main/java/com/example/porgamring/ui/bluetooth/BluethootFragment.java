@@ -31,13 +31,10 @@ import java.util.ArrayList;
 public class BluethootFragment extends Fragment {
 
     private final BluetoothSend bluetoothSend = MainActivity.bluetoothSend;
-    private FragmentBluethootBinding binding;
-    private Button btnDis, btnlijst;
     private ListView list;
     private ArrayAdapter<String> pairedDevicesArrayAdapter;
     private TextView tvStatus;
     private ArrayList<Persoon> persoonArrayList;
-    private Spinner spPer;
 
     @SuppressLint("SetTextI18n")
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -45,15 +42,15 @@ public class BluethootFragment extends Fragment {
         BluethootViewModel slideshowViewModel =
                 new ViewModelProvider(this).get(BluethootViewModel.class);
 
-        binding = FragmentBluethootBinding.inflate(inflater, container, false);
+        com.example.porgamring.databinding.FragmentBluethootBinding binding = FragmentBluethootBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        spPer = binding.spPers;
+        Spinner spPer = binding.spPers;
 
         APIHandler api = new APIHandler();
 
 
-        btnDis = binding.btnDis;
-        btnlijst = binding.btnList;
+        Button btnDis = binding.btnDis;
+        Button btnlijst = binding.btnList;
         list = binding.lvList;
         tvStatus = binding.tvStatus;
         pairedDevicesArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1);
@@ -93,9 +90,7 @@ public class BluethootFragment extends Fragment {
             }
         });
 
-        btnlijst.setOnClickListener(view -> {
-            bluetoothSend.showPairedDevices(list, pairedDevicesArrayAdapter);
-        });
+        btnlijst.setOnClickListener(view -> bluetoothSend.showPairedDevices(list, pairedDevicesArrayAdapter));
 
         btnDis.setOnClickListener(view -> {
             try {

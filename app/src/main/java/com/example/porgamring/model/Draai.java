@@ -1,5 +1,7 @@
 package com.example.porgamring.model;
 
+import androidx.annotation.NonNull;
+
 public class Draai {
     private Persoon persoon;
     private String dtmMoment;
@@ -45,6 +47,7 @@ public class Draai {
         this.strKant = strKant;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Naar " + strKant + " op " + dtmMoment;
